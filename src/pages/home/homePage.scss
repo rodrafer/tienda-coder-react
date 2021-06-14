@@ -1,0 +1,21 @@
+@import '../../styles/_variables';
+
+.home-page {
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 70px calc(100vh - 70px);
+    grid-template-areas:
+        "header"
+        "content";
+    
+    &__header {
+        grid-area: header;
+        background-color: $background-black;
+    }
+
+    &__content {
+        grid-area: content;
+        background-color: $background-blue;
+        color: $font-color-base;
+    }
+}
