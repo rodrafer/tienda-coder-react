@@ -4,7 +4,7 @@ import { HomePage } from './pages/home/homePage';
 function App() {
   return (
     <div className="app">
-      <HomePage></HomePage>
+      <HomePage />
     </div>
   );
 };
