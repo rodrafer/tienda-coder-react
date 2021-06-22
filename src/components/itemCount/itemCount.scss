@@ -1,0 +1,46 @@
+@import '../../styles/variables';
+@import '../../styles/components';
+
+.counter {
+    width: $spacing-150;
+    height: $spacing-150;
+    background-color: $background-black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid $border-blue;
+
+    &__item {
+        margin: 0;
+        color: $font-color-base;
+    }
+
+    &__stock-disclaimer {
+        margin: 0;
+        color: $font-color-red;
+        font-size: $font-size-regular;
+    }
+
+    &__commands {
+        background-color: $background-black;
+        color: $font-color-base;
+        width: $spacing-125;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        font-size: $font-size-base;
+        border: 1px solid $border-withe;
+
+        .text-area {
+            &--disabled {
+                color: $font-color-disabled;
+            }
+        }
+    }
+
+    &__add-to-cart {
+        width: $spacing-125;
+    }
+}
