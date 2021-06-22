@@ -1,0 +1,46 @@
+@import './variables';
+
+.main-button {
+    background-color: $background-black;
+    color: $font-color-base;
+    border: 1px solid $border-withe;
+    cursor: pointer;
+    font-size: $font-size-regular;
+    font-weight: $font-weight-semi-bold;
+
+    &:hover {
+        border: 1px solid $border-blue;
+    }
+
+    &--disabled {
+        border: 1px solid $border-disabled;
+        color: $font-color-disabled;
+        cursor: unset;
+
+        &:hover {
+            border: 1px solid $border-disabled;
+        }
+    }
+}
+
+.command-button {
+    width: $spacing-20;
+    background-color: $background-black;
+    color: $font-color-base;
+    border: none;
+    cursor: pointer;
+    font-size: $font-size-big;
+
+    &:hover {
+        color: $font-color-blue;
+    }
+
+    &--disabled {
+        color: $font-color-disabled;
+        cursor: unset;
+
+        &:hover {
+            color: $font-color-disabled;
+        }
+    }
+}

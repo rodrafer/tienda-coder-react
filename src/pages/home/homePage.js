@@ -1,7 +1,7 @@
 import './homePage.scss';
 import { NavBar } from '../../components/navBar/navBar';
 import { ItemListContainer } from '../../components/itemListContainer/itemListContainer';
-import { WORDINGS } from '../../wordings'
+import { WORDINGS } from '../../wordings';
 
 export const HomePage = () => {
     const childrenProps = {
