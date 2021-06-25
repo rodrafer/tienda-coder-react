@@ -5,14 +5,23 @@ import { WORDINGS } from '../../wordings';
 export const ItemListContainer = (props) => {
     const { greeting } = props;
     
+    const onAdd = (stock, itemName, count) => {
+        const addedItemsText = count === 1 ? WORDINGS.ONE_ITEM_ADDED : WORDINGS.SEVERAL_ITEMS_ADDED;
+        stock && alert(`¡Felicitaciones! ${count} ${itemName} ${addedItemsText}. (Respuesta simulada)`);
+    }
+    
     const withStockPops = {
         itemName: 'Nintendo Switch',
-        itemStock: 3
+        stock: 6,
+        initial: 3,
+        onAdd: onAdd
     }
 
     const withoutStockPops = {
         itemName: 'Play Station 5',
-        itemStock: 0
+        stock: 0,
+        initial: 0,
+        onAdd: onAdd
     }
 
     return (
