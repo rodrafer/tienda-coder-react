@@ -1,0 +1,41 @@
+@import '../../styles/variables';
+@import '../../styles/components';
+
+.item {
+    display: grid;
+    grid-template-columns: $spacing-250 $spacing-500;
+    grid-template-rows: $spacing-75 $spacing-75;
+    grid-template-areas:
+        "image title"
+        "image price";
+    margin: $spacing-10 0;
+    color: $font-color-base;
+    background-color: $background-black;
+    border: 1px solid $border-blue;
+    cursor: pointer;
+
+    &__image {
+        grid-area: image;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: $spacing-150;
+        width: $spacing-250;
+        border-right: 1px solid $border-blue;;
+    }
+
+    &__title {
+        grid-area: title;
+        align-self: flex-end;
+        justify-self: flex-start;
+        margin: 0 $spacing-10;
+        border-bottom: 1px solid $border-withe;
+    }
+
+    &__price {
+        grid-area: price;
+        align-self: flex-start;
+        justify-self: flex-start;
+        margin: $spacing-10 $spacing-10;
+    }
+}
