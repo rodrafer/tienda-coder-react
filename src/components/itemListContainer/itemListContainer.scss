@@ -4,3 +4,12 @@
 .landing-subtitle {
     color: $font-color-base;
 }
+
+.landing-subtitle {
+    margin-top: 0;
+}
+
+.item-count-example {
+    display: flex;
+    flex-direction: row;
+}
