@@ -7,7 +7,7 @@ export const ItemListContainer = (props) => {
     
     const onAdd = (stock, itemName, count) => {
         const addedItemsText = count === 1 ? WORDINGS.ONE_ITEM_ADDED : WORDINGS.SEVERAL_ITEMS_ADDED;
-        stock && console.log(`¡Felicitaciones! ${count} ${itemName} ${addedItemsText}. (Respuesta simulada)`)
+        stock && alert(`¡Felicitaciones! ${count} ${itemName} ${addedItemsText}. (Respuesta simulada)`);
     }
     
     const withStockPops = {
