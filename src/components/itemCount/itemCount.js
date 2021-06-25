@@ -5,7 +5,7 @@ import { WORDINGS } from '../../wordings';
 
 export const ItemCount = (props) => {
     const { itemName, stock, initial, onAdd } = props;
-    
+
     const [count, setCount] = useState(initial);
 
     let addedCount;
@@ -36,27 +36,27 @@ export const ItemCount = (props) => {
         setCount(subtractedCount);
     };
 
-    const subtractButtonClassNames = classNames (
+    const subtractButtonClassNames = classNames(
         'command-button',
-        {'command-button--disabled': isSubtractDisabled || !stock},
+        { 'command-button--disabled': isSubtractDisabled || !stock },
     )
 
-    const addButtonClassNames = classNames (
+    const addButtonClassNames = classNames(
         'command-button',
-        {'command-button--disabled': isAddDisabled || !stock},
+        { 'command-button--disabled': isAddDisabled || !stock },
     )
 
-    const cartButtonClassNames = classNames (
+    const cartButtonClassNames = classNames(
         'counter__add-to-cart',
         'main-button',
-        {'main-button--disabled': !stock},
+        { 'main-button--disabled': !stock },
     )
 
-    const textAreaClassNames = classNames (
+    const textAreaClassNames = classNames(
         'text-area',
-        {'text-area--disabled': !stock},
+        { 'text-area--disabled': !stock },
     )
- 
+
     return (
         <div className="counter">
             <p className="counter__item">{itemName}</p>

@@ -1,5 +1,5 @@
-@import '../../styles/variables';
-@import '../../styles/components';
+@import "../../styles/variables";
+@import "../../styles/components";
 
 .item {
     display: grid;
@@ -21,7 +21,7 @@
         justify-content: center;
         height: $spacing-150;
         width: $spacing-250;
-        border-right: 1px solid $border-blue;;
+        border-right: 1px solid $border-blue;
     }
 
     &__title {

@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@import "../../styles/variables";
 
 .wrapper-left {
     display: flex;
@@ -10,12 +10,12 @@
         height: 70px;
         cursor: pointer;
     }
-        
+
     .menu {
         margin: 0;
-        font-family: 'Franklin Gothic Medium', sans-serif;
+        font-family: "Franklin Gothic Medium", sans-serif;
         color: $font-color-base;
-        
+
         &__list {
             padding-left: $spacing-10;
             display: flex;
