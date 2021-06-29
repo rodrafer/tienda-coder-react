@@ -3,7 +3,7 @@
 .home-page {
     display: grid;
     grid-template-columns: 100vw;
-    grid-template-rows: 70px calc(100vh - 70px);
+    grid-template-rows: 70px minmax(calc(100vh - 70px), auto);
     grid-template-areas:
         "header"
         "content";
