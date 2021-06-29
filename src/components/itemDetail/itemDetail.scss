@@ -1,0 +1,49 @@
+@import "../../styles/variables";
+@import "../../styles/components";
+
+.item-detail {
+    display: grid;
+    grid-template-columns: 70vw 20vw;
+    grid-template-rows: 70vh;
+    grid-template-areas:
+        "image specs";
+    margin: $spacing-20 0;
+    color: $font-color-base;
+    background-color: $background-black;
+    border: 1px solid $border-blue;
+    cursor: pointer;
+    overflow: auto;
+
+    &__image {
+        grid-area: image;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 70vh;
+        width: 70vw;
+        border-right: 1px solid $border-blue;
+        border-bottom: 1px solid $border-blue;
+    }
+
+    &__specs {
+        grid-area: specs;
+
+        &-description {
+            text-align: start;
+            margin: $spacing-20 $spacing-10;
+        }
+
+        &-title {
+            text-align: start;
+            margin: $spacing-100 $spacing-10 0;
+            border-bottom: 1px solid $border-withe;
+            font-size: $font-size-huge;
+        }
+    
+        &-price {
+            text-align: start;
+            margin: $spacing-10 $spacing-10;
+            font-size: $font-size-big;
+        }
+    }
+}
