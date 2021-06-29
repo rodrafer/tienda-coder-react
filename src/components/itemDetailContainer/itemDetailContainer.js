@@ -9,15 +9,13 @@ export const ItemDetailContainer = () => {
     const [itemToShow, setItemToShow] = useState();
 
     useEffect(() => {
-        const getItem = () => {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    resolve(MOCK_DATA[0])
-                }, 2000)
-            })
-        }
+        const getItem = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(MOCK_DATA[0])
+            }, 2000)
+        })
 
-        getItem().then(item => setItemToShow(item))
+        getItem.then(item => setItemToShow(item))
     }, [])
 
     return (
