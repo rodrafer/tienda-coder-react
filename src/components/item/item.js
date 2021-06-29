@@ -4,7 +4,7 @@ export const Item = (props) => {
     const { item } = props;
 
     return (
-        <div className={`item`}>
+        <div className="item">
             <div className="item__image">
                 <img alt={item.id} src={item.pictureUrl}></img>
             </div>

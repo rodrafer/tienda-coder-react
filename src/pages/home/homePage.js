@@ -1,6 +1,7 @@
 import './homePage.scss';
 import { NavBar } from '../../components/navBar/navBar';
 import { ItemListContainer } from '../../components/itemListContainer/itemListContainer';
+import { ItemDetailContainer } from '../../components/itemDetailContainer/itemDetailContainer';
 import { WORDINGS } from '../../wordings';
 
 export const HomePage = () => {
@@ -15,6 +16,7 @@ export const HomePage = () => {
             </header>
             <main className="home-page__content">
                 <ItemListContainer {...childrenProps} />
+                <ItemDetailContainer />
             </main>
         </div>
     )
