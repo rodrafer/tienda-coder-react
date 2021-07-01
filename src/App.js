@@ -16,8 +16,8 @@ function App() {
         <main className="app__content">
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="category/:categoryId" component={CategoryPage} />
-            <Route path="item/:itemId" component={ItemDetailPage} />
+            <Route path="/category/:categoryId" component={CategoryPage} />
+            <Route path="/item/:itemId" component={ItemDetailPage} />
             <Route path="*" component={NotFoundPage} />
           </Switch>
         </main>
