@@ -3,6 +3,19 @@ export const WORDINGS = {
     LANDING_TITLE: '¡Bienvenido a Reactive Games!',
     ITEMS_EXAMPLE: 'Aquí puedes ver algunos ítems y un detalle de ejemplo:',
 
+    // CATEGORIES
+    CATEGORIES: [
+        'PC de escritorio',
+        'Notebooks',
+        'Celulares',
+        'Consolas',
+        'E-readers y tablets',
+        'Componentes de PC',
+        'Periféricos',
+        'Juegos',
+        'Accesorios'
+    ],
+
     // BUTTONS
     ADD_TO_CART: 'Agregar al carrito',
 
