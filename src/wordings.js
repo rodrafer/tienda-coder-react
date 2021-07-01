@@ -14,5 +14,6 @@ export const WORDINGS = {
     ONE_ITEM_ADDED: 'fue añadido al carrito exitosamente',
     SEVERAL_ITEMS_ADDED: 'fueron añadidos al carrito exitosamente',
     SEARCHING_FOR_PRODUCTS: 'Buscando los mejores productos...',
-    LOADING_PRODUCT_DETAIL: 'Cargando detalle del producto...'
+    LOADING_PRODUCT_DETAIL: 'Cargando detalle del producto...',
+    NOT_FOUND_DISCLAIMER: 'Ups! Parece que no hay nada por aquí'
 }
