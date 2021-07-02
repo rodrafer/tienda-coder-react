@@ -4,19 +4,19 @@ import { ItemDetail } from '../itemDetail/itemDetail';
 import { WORDINGS } from '../../wordings';
 import MOCK_DATA from '../../assets/MOCK_DATA.json';
 
-export const ItemDetailContainer = () => {
-
+export const ItemDetailContainer = (props) => {
+    const { itemId } = props
     const [itemToShow, setItemToShow] = useState();
 
     useEffect(() => {
         const getItem = new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve(MOCK_DATA[0])
+                resolve(MOCK_DATA.find(item => item.id.toString() === itemId))
             }, 2000)
         })
 
         getItem.then(item => setItemToShow(item))
-    }, [])
+    }, [itemId])
 
     return (
         itemToShow
