@@ -1,12 +1,13 @@
 import './itemListContainer.scss';
 import { useEffect, useState } from 'react';
+import { snakeCase } from 'snake-case';
 import { ItemCount } from '../itemCount/itemCount';
 import { ItemList } from '../itemList/itemList';
 import { WORDINGS } from '../../wordings';
 import MOCK_DATA from '../../assets/MOCK_DATA.json';
 
 export const ItemListContainer = (props) => {
-    const { greeting } = props;
+    const { greeting, categoryId } = props;
 
     const onAdd = (stock, itemName, count) => {
         const addedItemsText = count === 1 ? WORDINGS.ONE_ITEM_ADDED : WORDINGS.SEVERAL_ITEMS_ADDED;
@@ -32,12 +33,12 @@ export const ItemListContainer = (props) => {
     useEffect(() => {
         const getItems = new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve(MOCK_DATA)
+                resolve(MOCK_DATA.filter(item => categoryId ? snakeCase(item.category) === categoryId : item))
             }, 2000)
         })
 
         getItems.then(items => setItems(items))
-    }, [])
+    }, [categoryId])
 
     return (
         <>

@@ -24,9 +24,15 @@
             list-style-type: none;
             font-size: $font-size-base;
 
-            li {
+            .category {
                 padding-left: $spacing-15;
                 cursor: pointer;
+                color: $font-color-base;
+                text-decoration: none;
+                
+                &__link {
+                    color: $link-blue;
+                }
             }
         }
     }
