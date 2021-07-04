@@ -4,9 +4,10 @@
 .item-detail {
     display: grid;
     grid-template-columns: 70vw 20vw;
-    grid-template-rows: 70vh;
+    grid-template-rows: 40vh 40vh;
     grid-template-areas:
-        "image specs";
+        "image specs"
+        "image count";
     margin: $spacing-20 0;
     color: $font-color-base;
     background-color: $background-black;
@@ -19,10 +20,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 70vh;
+        height: 80vh;
         width: 70vw;
         border-right: 1px solid $border-blue;
-        border-bottom: 1px solid $border-blue;
     }
 
     &__specs {
@@ -43,6 +43,16 @@
         &-price {
             text-align: start;
             margin: $spacing-10 $spacing-10;
+            font-size: $font-size-big;
+        }
+    }
+
+    &__commands {
+        grid-area: count;
+        align-self: center;
+        justify-self: center;
+
+        .finish-buying-button {
             font-size: $font-size-big;
         }
     }
