@@ -29,6 +29,7 @@ export const ItemListContainer = (props) => {
     }
 
     const [items, setItems] = useState([]);
+    const [hasLoaded, setHasLoaded] = useState(false);
 
     useEffect(() => {
         const getItems = new Promise((resolve, reject) => {
@@ -37,7 +38,10 @@ export const ItemListContainer = (props) => {
             }, 2000)
         })
 
-        getItems.then(items => setItems(items))
+        getItems.then(items => {
+            setItems(items)
+            setHasLoaded(true)
+        })
     }, [categoryId])
 
     return (
@@ -48,7 +52,7 @@ export const ItemListContainer = (props) => {
                 <ItemCount {...withStockPops} />
                 <ItemCount {...withoutStockPops} />
             </div>
-            <ItemList items={items} />
+            <ItemList items={items} hasLoaded={hasLoaded} />
         </>
     )
 }
