@@ -1,7 +1,7 @@
 export const WORDINGS = {
     // TITLES
     LANDING_TITLE: '¡Bienvenido a Reactive Games!',
-    ITEMS_EXAMPLE: 'Aquí puedes ver algunos ítems y un detalle de ejemplo:',
+    ITEMS_EXAMPLE: 'Aquí puedes ver algunos ítems de ejemplo:',
 
     // CATEGORIES
     CATEGORIES: [
@@ -28,5 +28,6 @@ export const WORDINGS = {
     SEVERAL_ITEMS_ADDED: 'fueron añadidos al carrito exitosamente',
     SEARCHING_FOR_PRODUCTS: 'Buscando los mejores productos...',
     LOADING_PRODUCT_DETAIL: 'Cargando detalle del producto...',
-    NOT_FOUND_DISCLAIMER: 'Ups! Parece que no hay nada por aquí'
+    CONTENT_NOT_FOUND: 'Ups! Parece que no hay nada por aquí',
+    CART_COMMING_SOON: 'El carrito estará disponible próximamente...'
 }
