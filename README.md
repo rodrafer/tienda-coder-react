@@ -113,3 +113,16 @@ Recibo el url param itemId en ItemDetailContainer y busco en la lista de ítems 
 Linkeo Item a ItemDetailPage mediante un <Link>.
 Arreglo estilos en general.
 Agrego wordings.
+
+# Versión 7
+- Incluyo README.md con información básica y change log.
+- Incluyo lógica en **ItemList** para dar feedback si se navega a una categoría y no se encuentra ningún ítem de esa categoría.
+- Quito **ItemCount** de **ItemListContainer** para incluirlo en **ItemDetail** y mostrarlo condicionalmente si el botón "Agregar al carrito" es presionado, en cuyo caso hago desaparecer **ItemCount** para mostrar botón "Terminar mi compra" que navega a la ruta `/cart`.
+- Creo creo componente **Cart** y **CartPage** para contener la vista del carrito que se agregará próximamente al componente **Cart** (actualmente tiene sólo un pequeño feedback).
+- Incluyo nuevo `Route` en **App** para mostrar **CartPage** al navegar a la ruta `/cart`.
+- Agrego propiedades _stock_ e _initial_ dentro de loa atributos de los ítems mockeados en **MOCK_DATA.json**.
+- Elimino nombre del ítem en **ItemCount** y reduzco su altura.
+- Quito subtítulo de **ItemListContainer** y lo incluyo en **ItemList** para mostrarse junto a la lista de ítems.
+- Corrijo altura de las páginas para evitar scrolling y estilos en general.
+- Agrego y modifico wordings.
+- Limpio código y proyecto de archivos innecesarios o no utilizados.
