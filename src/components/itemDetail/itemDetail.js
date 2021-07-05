@@ -1,17 +1,17 @@
 import './itemDetail.scss';
+import classNames from 'classnames';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ItemCount } from '../itemCount/itemCount';
 import { WORDINGS } from '../../wordings';
-import { useState } from 'react';
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 
 export const ItemDetail = (props) => {
     const { item } = props;
-    const [itemsInCart, setitemsInCart] = useState(0);
+    const [itemsInCart, setItemsInCart] = useState(0);
 
     const onAdd = (stock, count) => {
         const addedItemsText = count === 1 ? WORDINGS.ONE_ITEM_ADDED : WORDINGS.SEVERAL_ITEMS_ADDED;
-        setitemsInCart(count);
+        setItemsInCart(count);
         stock && alert(`¡Felicitaciones! ${count} ${item.title} ${addedItemsText}. (Respuesta simulada)`);
     }
 
