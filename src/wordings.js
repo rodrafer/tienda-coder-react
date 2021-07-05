@@ -1,7 +1,7 @@
 export const WORDINGS = {
     // TITLES
     LANDING_TITLE: '¡Bienvenido a Reactive Games!',
-    ITEMS_EXAMPLE: 'Aquí puedes ver algunos ítems y un detalle de ejemplo:',
+    ITEMS_EXAMPLE: 'Aquí puedes ver algunos ítems de ejemplo:',
 
     // CATEGORIES
     CATEGORIES: [
