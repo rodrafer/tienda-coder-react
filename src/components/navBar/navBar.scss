@@ -24,9 +24,13 @@
             list-style-type: none;
             font-size: $font-size-base;
 
-            li {
+            .category {
                 padding-left: $spacing-15;
                 cursor: pointer;
+                
+                &__link {
+                    color: $link-blue;
+                }
             }
         }
     }

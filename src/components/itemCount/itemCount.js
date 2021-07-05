@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { WORDINGS } from '../../wordings';
 
 export const ItemCount = (props) => {
-    const { itemName, stock, initial, onAdd } = props;
+    const { stock, initial, onAdd } = props;
 
     const [count, setCount] = useState(initial);
 
@@ -59,14 +59,13 @@ export const ItemCount = (props) => {
 
     return (
         <div className="counter">
-            <p className="counter__item">{itemName}</p>
             {renderStockDisclaimer()}
             <div className="counter__commands">
                 <button onClick={() => subtractItem()} disabled={isSubtractDisabled} className={subtractButtonClassNames}>-</button>
                 <span className={textAreaClassNames}>{stock ? count : 0}</span>
                 <button onClick={() => addItem()} disabled={isAddDisabled} className={addButtonClassNames}>+</button>
             </div>
-            <button className={cartButtonClassNames} disabled={!stock} onClick={() => onAdd(stock, itemName, count)}>{WORDINGS.ADD_TO_CART}</button>
+            <button className={cartButtonClassNames} disabled={!stock} onClick={() => onAdd(stock, count)}>{WORDINGS.ADD_TO_CART}</button>
         </div>
     )
 }

@@ -4,69 +4,99 @@
     "title": "Nitendo Switch",
     "description": "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
     "price": "$325.74",
-    "pictureUrl": "http://dummyimage.com/194x100.png/ff4444/ffffff"
+    "pictureUrl": "http://dummyimage.com/194x100.png/ff4444/ffffff",
+    "category": "Consolas",
+    "stock": 6,
+    "initial": 1
   },
   {
     "id": 2,
     "title": "Play Station 5",
     "description": "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
     "price": "$132.64",
-    "pictureUrl": "http://dummyimage.com/224x100.png/ff4444/ffffff"
+    "pictureUrl": "http://dummyimage.com/224x100.png/ff4444/ffffff",
+    "category": "Consolas",
+    "stock": 0,
+    "initial": 1
   },
   {
     "id": 3,
     "title": "Moto Z3 Play",
     "description": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
     "price": "$143.94",
-    "pictureUrl": "http://dummyimage.com/185x100.png/ff4444/ffffff"
+    "pictureUrl": "http://dummyimage.com/185x100.png/ff4444/ffffff",
+    "category": "Celulares",
+    "stock": 2,
+    "initial": 1
   },
   {
     "id": 4,
     "title": "Monitor Samsung 24''",
     "description": "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     "price": "$495.64",
-    "pictureUrl": "http://dummyimage.com/202x100.png/5fa2dd/ffffff"
+    "pictureUrl": "http://dummyimage.com/202x100.png/5fa2dd/ffffff",
+    "category": "Periféricos",
+    "stock": 4,
+    "initial": 1
   },
   {
     "id": 5,
     "title": "Mouse Logitech M280",
     "description": "Phasellus in felis. Donec semper sapien a libero. Nam dui.",
     "price": "$184.60",
-    "pictureUrl": "http://dummyimage.com/118x100.png/5fa2dd/ffffff"
+    "pictureUrl": "http://dummyimage.com/118x100.png/5fa2dd/ffffff",
+    "category": "Periféricos",
+    "stock": 10,
+    "initial": 1
   },
   {
     "id": 6,
     "title": "MacBook Pro 13''",
     "description": "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
     "price": "$332.12",
-    "pictureUrl": "http://dummyimage.com/151x100.png/dddddd/000000"
+    "pictureUrl": "http://dummyimage.com/151x100.png/dddddd/000000",
+    "category": "Notebooks",
+    "stock": 1,
+    "initial": 1
   },
   {
     "id": 7,
     "title": "Notebook HP Omen",
     "description": "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
     "price": "$560.52",
-    "pictureUrl": "http://dummyimage.com/177x100.png/ff4444/ffffff"
+    "pictureUrl": "http://dummyimage.com/177x100.png/ff4444/ffffff",
+    "category": "Notebooks",
+    "stock": 2,
+    "initial": 1
   },
   {
     "id": 8,
     "title": "Samsung Galaxy A31",
     "description": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
     "price": "$908.37",
-    "pictureUrl": "http://dummyimage.com/162x100.png/cc0000/ffffff"
+    "pictureUrl": "http://dummyimage.com/162x100.png/cc0000/ffffff",
+    "category": "Celulares",
+    "stock": 7,
+    "initial": 1
   },
   {
     "id": 9,
     "title": "Auriculares Samsung Level U",
     "description": "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
     "price": "$847.13",
-    "pictureUrl": "http://dummyimage.com/125x100.png/dddddd/000000"
+    "pictureUrl": "http://dummyimage.com/125x100.png/dddddd/000000",
+    "category": "Periféricos",
+    "stock": 3,
+    "initial": 1
   },
   {
     "id": 10,
     "title": "Teclado Logitech MK245",
     "description": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
     "price": "$29.58",
-    "pictureUrl": "http://dummyimage.com/227x100.png/5fa2dd/ffffff"
+    "pictureUrl": "http://dummyimage.com/227x100.png/5fa2dd/ffffff",
+    "category": "Periféricos",
+    "stock": 5,
+    "initial": 1
   }
 ]
