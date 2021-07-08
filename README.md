@@ -47,10 +47,10 @@ Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 ## CHANGELOG
 
 
-# Versión 0
+### Versión 0
 - Repositorio público de GitHub de la aplicación "tienda-coder-react" (nombre provisorio) creada mediante el código "npx create-react-app tienda-coder-react".
 - Algunos archivos innecesarios fueron eliminados y es posible levantar la aplicación ejecutando "npm start" desde la línea de comandos.
-# Versión 1
+### Versión 1
 - Instalo node-sass para reemplazar archivos css por scss
 - Cambio lenguaje de la app a Español en index.html
 - Cambio nombre de la app a "Reactive Games"
@@ -61,7 +61,7 @@ Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 - Creo el directorio pages con la página homePage y sus estilos
 - Agrego un logo parcial
 
-# Versión 2
+### Versión 2
 - Creo el componente CartWidget para renderizar el ícono de un carrito
 - Creo el componente ItemListContainer con una prop 'greeting' para mostrar un título provisorio debajo del navbar
 - Incluyo nuevos íconos en el proyecto
@@ -72,7 +72,7 @@ Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 - Abrevio tags de componentes al no tener contenido entre ellos
 - TODO: versionado en README.md, necesitaría un ejemplo para guiarme sobre cómo estructurarlo
 
-# Versión 3
+### Versión 3
 - Creo componente ItemCount. El mismo permite agregar ítems siempre que exista stock de ese ítem, hasta un máximo igual al stock del ítem y con un mínimo de 1 unidad. Adicionalmente, el componente informa si no existe stock del ítem o si se ha alcanzado el máximo disponible del mismo, y permite agregar al carrito el número seleccionado de unidades siempre que haya stock, dando feedback al usuario con una respuesta simulada en un alert.
 - Inserto como ejemplo dos ItemCount en ItemListContainer, uno con stock y uno sin stock, para mostrar sus diferencias.
 - Creo archivo _components.scss para introducir estilos de elementos estandarizados y reutilizables mediante sus class-names.
@@ -81,7 +81,7 @@ Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 - Agrego variables de estilos necesarias.
 - Hago correcciones generales.
 
-# Versión 4
+### Versión 4
 - Creo una lista de items mockeados mediante un MOCK_DATA.json
 - Creo componente Item con estilos para mostrar información principal de un ítem
 - Creo componente ItemList con estilos para recibir un array de ítems y renderizarlos en componentes Item mediante un map()
@@ -89,7 +89,7 @@ Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 - Hago correcciones de estilos, agrego variables de scss y wordings
 - Hago correcciones cosméticas en el código
 
-# Versión 5
+### Versión 5
 - Creo componente ItemDetail con estilos para mostrar el detalle de un ítem.
 - Creo componente ItemDetailContainer para obtener de MOCK_DATA.json un ítem asíncronamente mediante una Promise dentro de un useEffect(), seteando dicho ítem en un estado propio al resolverse dicha Promise luego de 2 segundos.
 - Incluyo ItemDetail dentro de ItemDetailContainer pasándole por props el ítem seteado en el state para mostrar vista de detalle del ítem.
@@ -97,7 +97,7 @@ Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 - Hago correcciones de estilos, agrego variables de scss y wordings.
 - Hago correcciones cosméticas en el código.
 
-# Versión 6
+### Versión 6
 - Instalo react-router-dom desde npm para incluir navegación en la app.
 - Creo páginas CategoryPage y ItemDetailPage para envolver a ItemListContainer y ItemDetailContainer respectivamente y pasar los url paramas necesarios como props.
 - Creo página NotFoundPage para mostrar un simple mensaje de feedback al navegar a una ruta sin contenido.
@@ -114,7 +114,7 @@ Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 - Arreglo estilos en general.
 - Agrego wordings.
 
-# Versión 7
+### Versión 7
 - Incluyo README.md con información básica y change log.
 - Incluyo lógica en **ItemList** para dar feedback si se navega a una categoría y no se encuentra ningún ítem de esa categoría.
 - Quito **ItemCount** de **ItemListContainer** para incluirlo en **ItemDetail** y mostrarlo condicionalmente si el botón "Agregar al carrito" es presionado, en cuyo caso hago desaparecer **ItemCount** para mostrar botón "Terminar mi compra" que navega a la ruta `/cart`.
@@ -127,7 +127,7 @@ Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 - Agrego y modifico wordings.
 - Limpio código y proyecto de archivos innecesarios o no utilizados.
 
-## Versión 8
+### Versión 8
 - Creo **CartContext** en forma de _custom provider_ con un valor _cart_ incluido en un _state_ propio que representa los ítems agregados al carrito en forma de _array_, y distintos _helpers_:
 > - _isInCart_ para verificar si un ítem se encuentra en el carrito mediante su id.
 > - _addItem_ para agregar un ítem al carrito en forma de un objeto al cual me refiero como _order_ compuesto por un atributo _item_ que incluye al ítem propiamente dicho y un atributo _quantity_ que contiene la cantidad de dicho ítem agregada al carrito. _addItem_ toma el ítem a agregar y su cantidad como argumentos y verifica si el ítem ya existe en el carrito mediante _isInCart_ antes de agregarlo.
