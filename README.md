@@ -98,21 +98,21 @@ Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 - Hago correcciones cosméticas en el código.
 
 # Versión 6
-Instalo react-router-dom desde npm para incluir navegación en la app.
-Creo páginas CategoryPage y ItemDetailPage para envolver a ItemListContainer y ItemDetailContainer respectivamente y pasar los url paramas necesarios como props.
-Creo página NotFoundPage para mostrar un simple mensaje de feedback al navegar a una ruta sin contenido.
-Muevo estructura de HomePage a App y la envuelvo en un BrowserRouter para incluir un Switch y Routes para cada ruta, linkeando a ellas las páginas correspondientes.
-Dejo HomePage como un simple wrapper de ItemListContainer para mostrar el catálogo completo.
-Modifico NavBar para renderizar las categorías mediante un método map() aplicado sobre una array de categorías importada desde archivo de wordings. Las categorías son renderizadas dentro de elementos <li> y envueltas en un <NavLink> para para navegar a las distintas vistas de ítems por categoría, con un activeClassName para dar estilos al nombre de la categoría a la cual se ha navegado.
-Instalo snake-case desde npm para convertir el nombre de las categorías a snake case y poder introducirlas a las rutas de los <NavLink>.
-Instalo uuid desde npm para crear una keyId y utilizarla como key de cada elemento <li> renderizado con map() por cada categoría en NavBar.
-Incluyo elemento <Link> en NavBar para linkear logo de la marca a la HomePage.
-Agrego la property category a cada ítem mockeado en *MOCK_DATA.json.
-Recibo el url param categoryId en ItemListContainer y filtro la lista de ítems (recibida de MOCK_DATA.json a través de una Promise en un useEffect()) por categoría, seteando la array resultante como prop para pasar a ItemList. Si ningún categoryId es pasado a ItemListContainer (caso de navegar a HomePage) se muestran todos los ítems (para mostrar catálogo completo en HomePage). El useEffect() recibe a categoryId como dependencia para re-renderizar el componente cada vez que se modifique el valor de esta prop (se navega a otra categoría)
-Recibo el url param itemId en ItemDetailContainer y busco en la lista de ítems (recibida de MOCK_DATA.json a través de una Promise en un useEffect()) el item cuyo id es igual al itemId suministrado (mediante un método find()) seteando el elemento resultante como prop para pasar a ItemList. El useEffect() recibe a itemId como dependencia para re-renderizar el componente cada vez que se modifique el valor de esta prop (se navega al detalle de otro ítem).
-Linkeo Item a ItemDetailPage mediante un <Link>.
-Arreglo estilos en general.
-Agrego wordings.
+- Instalo react-router-dom desde npm para incluir navegación en la app.
+- Creo páginas CategoryPage y ItemDetailPage para envolver a ItemListContainer y ItemDetailContainer respectivamente y pasar los url paramas necesarios como props.
+- Creo página NotFoundPage para mostrar un simple mensaje de feedback al navegar a una ruta sin contenido.
+- Muevo estructura de HomePage a App y la envuelvo en un BrowserRouter para incluir un Switch y Routes para cada ruta, linkeando a ellas las páginas correspondientes.
+- Dejo HomePage como un simple wrapper de ItemListContainer para mostrar el catálogo completo.
+- Modifico NavBar para renderizar las categorías mediante un método map() aplicado sobre una array de categorías importada desde archivo de wordings. Las categorías son renderizadas dentro de elementos <li> y envueltas en un <NavLink> para para navegar a las distintas vistas de ítems por categoría, con un activeClassName para dar estilos al nombre de la categoría a la cual se ha navegado.
+- Instalo snake-case desde npm para convertir el nombre de las categorías a snake case y poder introducirlas a las rutas de los <NavLink>.
+- Instalo uuid desde npm para crear una keyId y utilizarla como key de cada elemento <li> renderizado con map() por cada categoría en NavBar.
+- Incluyo elemento <Link> en NavBar para linkear logo de la marca a la HomePage.
+- Agrego la property category a cada ítem mockeado en *MOCK_DATA.json.
+- Recibo el url param categoryId en ItemListContainer y filtro la lista de ítems (recibida de MOCK_DATA.json a través de una Promise en un useEffect()) por categoría, seteando la array resultante como prop para pasar a ItemList. Si ningún categoryId es pasado a ItemListContainer (caso de navegar a HomePage) se muestran todos los ítems (para mostrar catálogo completo en HomePage). El useEffect() recibe a categoryId como dependencia para re-renderizar el componente cada vez que se modifique el valor de esta prop (se navega a otra categoría)
+- Recibo el url param itemId en ItemDetailContainer y busco en la lista de ítems (recibida de MOCK_DATA.json a través de una Promise en un useEffect()) el item cuyo id es igual al itemId suministrado (mediante un método find()) seteando el elemento resultante como prop para pasar a ItemList. El useEffect() recibe a itemId como dependencia para re-renderizar el componente cada vez que se modifique el valor de esta prop (se navega al detalle de otro ítem).
+- Linkeo Item a ItemDetailPage mediante un <Link>.
+- Arreglo estilos en general.
+- Agrego wordings.
 
 # Versión 7
 - Incluyo README.md con información básica y change log.
@@ -126,3 +126,18 @@ Agrego wordings.
 - Corrijo altura de las páginas para evitar scrolling y estilos en general.
 - Agrego y modifico wordings.
 - Limpio código y proyecto de archivos innecesarios o no utilizados.
+
+## Versión 8
+- Creo **CartContext** en forma de _custom provider_ con un valor _cart_ incluido en un _state_ propio que representa los ítems agregados al carrito en forma de _array_, y distintos _helpers_:
+> - _isInCart_ para verificar si un ítem se encuentra en el carrito mediante su id.
+> - _addItem_ para agregar un ítem al carrito en forma de un objeto al cual me refiero como _order_ compuesto por un atributo _item_ que incluye al ítem propiamente dicho y un atributo _quantity_ que contiene la cantidad de dicho ítem agregada al carrito. _addItem_ toma el ítem a agregar y su cantidad como argumentos y verifica si el ítem ya existe en el carrito mediante _isInCart_ antes de agregarlo.
+> - _removeItem_ para eliminar un ítem del carrito mediante su id, verificando primero que el ítem exista mediante _isInCart_ y filtrando luego el contenido de _cart_ excluyendo al ítem cuyo id coincide con el que se quiere eliminar.
+> - _clear_ para eliminar todo el contenido del carrito seteando su state a una _array_ vacía.
+- Proveyo estos _helpers_ y el _cart_ al _Provider_ en su atributo _value_. Incluyo un _useEffect_ atado al valor de _cart_ para hacer log de su contenido temporalmente cada vez que su estado cambia, con propósitos de evaluar su comportamiento al agregar/remover un ítem del carrito.
+- Importo **CartProvider** en **index.js** y lo utilizo para envolver **App** y convertirlo en un nodo proveedor del **CartContext** para toda la app.
+- Importo **CartContext** en **ItemDetail** y accedo al mismo mediante un _useContext_, accediendo a sus _hepers_ _isInCart_, _addItem_ y _removeItem_:
+> - Utilizo _addItem_ dentro del método _onAdd_ disparado al hacerse click en el botón "Agregar al carrito" para agregar un ítem y su cantidad al estado _cart_ del _context_ al hacerse click en dicho botón.
+> - Utilizo _isInCart_ para mostrar un botón "Terminar mi compra" con redirección a la ruta `/cart` y uno "Eliminar del carrito" en caso de que el ítem se encuentre en el carrito, o **ItemCount** si aún no ha sido agregado.
+> - Utilizo _removeItem_ para quitar un ítem del estado _cart_ del _context_ al hacerse click en "Eliminar del carrito".
+- Agrego wordings de botones "Terminar mi compra" y "Eliminar del carrito".
+- Limpio y ordeno el código.
