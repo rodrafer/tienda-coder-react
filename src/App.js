@@ -4,8 +4,8 @@ import { HomePage } from './pages/homePage/homePage';
 import { CategoryPage } from './pages/categoryPage/categoryPage';
 import { ItemDetailPage } from './pages/itemDetailPage/itemDetailPage';
 import { NotFoundPage } from './pages/notFoundPage/notFoundPage';
-import { NavBar } from './components/navBar/navBar';
 import { CartPage } from './pages/cart/cartPage';
+import { NavBar } from './components/navBar/navBar';
 
 function App() {
   return (

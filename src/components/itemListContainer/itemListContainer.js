@@ -1,5 +1,5 @@
 import './itemListContainer.scss';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { snakeCase } from 'snake-case';
 import { ItemList } from '../itemList/itemList';
 import MOCK_DATA from '../../assets/MOCK_DATA.json';
@@ -26,9 +26,9 @@ export const ItemListContainer = (props) => {
     }, [categoryId])
 
     return (
-        <>
+        <Fragment>
             {greeting && <h1 className="landing-title">{greeting}</h1>}
             <ItemList items={items} hasLoaded={hasLoaded} />
-        </>
+        </Fragment>
     )
 }

@@ -1,6 +1,7 @@
 import './navBar.scss';
 import { snakeCase } from 'snake-case';
 import { v4 as uuidv4 } from 'uuid';
+import { Fragment } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/logo-with-background.svg';
 import { CartWidget } from '../cartWidget/cartWidget';
@@ -19,7 +20,7 @@ export const NavBar = () => {
     }
 
     return (
-        <>
+        <Fragment>
             <div className="wrapper-left">
                 <Link to="/">
                     <img src={logo} alt="logo" className="logo"></img>
@@ -33,6 +34,6 @@ export const NavBar = () => {
             <div className="wrapper-right">
                 <CartWidget />
             </div>
-        </>
+        </Fragment>
     )
 }
