@@ -1,15 +1,34 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 export const CartContext = createContext([]);
 
 export const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState([])
-    
-    // Pasar el setter setCart del useState no es buena práctica, mejor pasar una función que llame al setter
-    const setItem = (item) => setCart([...cart, item])
-    
+    const [cart, setCart] = useState([]);
+
+    const isInCart = (itemIdToCheck) => cart.some(order => order.item.id === itemIdToCheck);
+
+    const findItemIndexById = (itemId) => cart.findIndex(order => order.item.id === itemId);
+
+    const addItem = (newItem, amount) => {
+        !isInCart(newItem.id) && setCart([...cart, { item: newItem, quantity: amount }]);
+    }
+
+    const removeItem = (itemId) => {
+        if (isInCart(itemId)) {
+            cart.splice(findItemIndexById(itemId), 1);
+            setCart(cart);
+        }
+    }
+
+    const clear = () => setCart([]);
+
+    useEffect(() => {
+        // Logging cart's value every time it changes (add/remove item) just to check if it behaves as expected
+        console.log(cart)
+    }, [cart]);
+
     return (
-        <CartContext.Provider value={{cart, setItem}}>
+        <CartContext.Provider value={{ cart, isInCart, addItem, removeItem, clear }}>
             {children}
         </CartContext.Provider>
     )
