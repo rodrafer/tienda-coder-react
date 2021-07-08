@@ -65,7 +65,7 @@ export const ItemCount = (props) => {
                 <span className={textAreaClassNames}>{stock ? count : 0}</span>
                 <button onClick={() => addItem()} disabled={isAddDisabled} className={addButtonClassNames}>+</button>
             </div>
-            <button className={cartButtonClassNames} disabled={!stock} onClick={() => onAdd(stock, count)}>{WORDINGS.ADD_TO_CART}</button>
+            <button className={cartButtonClassNames} disabled={!stock} onClick={() => onAdd(count)}>{WORDINGS.ADD_TO_CART}</button>
         </div>
     )
 }
