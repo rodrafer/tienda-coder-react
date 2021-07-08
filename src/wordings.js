@@ -18,6 +18,8 @@ export const WORDINGS = {
 
     // BUTTONS
     ADD_TO_CART: 'Agregar al carrito',
+    FINISH_BUYING: 'Terminar mi compra',
+    REMOVE_FROM_CART: 'Eliminar del carrito',
 
     // DISCLAIMERS
     NO_STOCK: 'Sin stock momentáneamente',

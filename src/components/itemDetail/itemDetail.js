@@ -25,10 +25,10 @@ export const ItemDetail = (props) => {
         return isInCart(item.id)
             ? <Fragment>
                 <Link to="/cart" className="finish-buying-button main-button">
-                    Terminar mi compra
+                    {WORDINGS.FINISH_BUYING}
                 </Link>
                 <button className="remove-item-button main-button" onClick={() => removeItem(item.id)}>
-                    Eliminar del carrito
+                    {WORDINGS.REMOVE_FROM_CART}
                 </button>
             </Fragment>
             : <ItemCount {...itemCountPops} />
