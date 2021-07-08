@@ -7,17 +7,12 @@ export const CartProvider = ({ children }) => {
 
     const isInCart = (itemIdToCheck) => cart.some(order => order.item.id === itemIdToCheck);
 
-    const findItemIndexById = (itemId) => cart.findIndex(order => order.item.id === itemId);
-
     const addItem = (newItem, amount) => {
         !isInCart(newItem.id) && setCart([...cart, { item: newItem, quantity: amount }]);
     }
 
     const removeItem = (itemId) => {
-        if (isInCart(itemId)) {
-            cart.splice(findItemIndexById(itemId), 1);
-            setCart(cart);
-        }
+        isInCart(itemId) && setCart(cart.filter(order => order.item.id !== itemId));
     }
 
     const clear = () => setCart([]);
