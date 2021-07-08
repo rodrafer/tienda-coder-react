@@ -46,7 +46,6 @@ Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 
 ## CHANGELOG
 
-
 ### Versión 0
 - Repositorio público de GitHub de la aplicación "tienda-coder-react" (nombre provisorio) creada mediante el código "npx create-react-app tienda-coder-react".
 - Algunos archivos innecesarios fueron eliminados y es posible levantar la aplicación ejecutando "npm start" desde la línea de comandos.
