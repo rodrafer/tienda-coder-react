@@ -1,36 +1,36 @@
 import './itemDetail.scss';
-import classNames from 'classnames';
-import { useState } from 'react';
+import { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ItemCount } from '../itemCount/itemCount';
+import { CartContext } from '../../context/cartContext';
 import { WORDINGS } from '../../wordings';
 
 export const ItemDetail = (props) => {
     const { item } = props;
-    const [itemsInCart, setItemsInCart] = useState(0);
+    const { isInCart, addItem, removeItem } = useContext(CartContext);
 
-    const onAdd = (stock, count) => {
+    const onAdd = (count) => {
         const addedItemsText = count === 1 ? WORDINGS.ONE_ITEM_ADDED : WORDINGS.SEVERAL_ITEMS_ADDED;
-        setItemsInCart(count);
-        stock && alert(`¡Felicitaciones! ${count} ${item.title} ${addedItemsText}. (Respuesta simulada)`);
+        addItem(item, count);
+        alert(`¡Felicitaciones! ${count} ${item.title} ${addedItemsText}.`);
     }
 
     const renderBuyingProcessCommands = () => {
-        const finishBuyingButtonClassNames = classNames(
-            'finish-buying-button',
-            'main-button',
-        )
-
         const itemCountPops = {
             stock: item.stock,
             initial: item.initial,
             onAdd: onAdd
         }
 
-        return itemsInCart
-            ? <Link to="/cart">
-                <button className={finishBuyingButtonClassNames}>Terminar mi compra</button>
-            </Link>
+        return isInCart(item.id)
+            ? <Fragment>
+                <Link to="/cart" className="finish-buying-button main-button">
+                    Terminar mi compra
+                </Link>
+                <button className="remove-item-button main-button" onClick={() => removeItem(item.id)}>
+                    Eliminar del carrito
+                </button>
+            </Fragment>
             : <ItemCount {...itemCountPops} />
     }
 

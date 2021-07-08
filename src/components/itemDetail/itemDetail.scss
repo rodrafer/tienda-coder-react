@@ -4,7 +4,7 @@
 .item-detail {
     display: grid;
     grid-template-columns: 70vw 20vw;
-    grid-template-rows: 40vh 40vh;
+    grid-template-rows: 50vh 30vh;
     grid-template-areas:
         "image specs"
         "image count";
@@ -52,8 +52,12 @@
         align-self: center;
         justify-self: center;
 
-        .finish-buying-button {
+        .finish-buying-button,
+        .remove-item-button {
             font-size: $font-size-big;
+            padding: 1px 6px;
+            display: inline-block;
+            margin-top: $spacing-20;
         }
     }
 }
