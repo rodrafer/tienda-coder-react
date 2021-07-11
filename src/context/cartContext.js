@@ -15,6 +15,12 @@ export const CartProvider = ({ children }) => {
         isInCart(itemId) && setCart(cart.filter(order => order.item.id !== itemId));
     }
 
+    const updateQuantity = (itemId, newQuantity) => {
+        // No sé por qué esto está funcionando... No debería ya que no puedo modificar cart directamente
+        cart.find(order => order.item.id === itemId).quantity = newQuantity;
+        setCart([...cart]);
+    }
+
     const clear = () => setCart([]);
 
     useEffect(() => {
@@ -23,7 +29,7 @@ export const CartProvider = ({ children }) => {
     }, [cart]);
 
     return (
-        <CartContext.Provider value={{ cart, isInCart, addItem, removeItem, clear }}>
+        <CartContext.Provider value={{ cart, isInCart, addItem, removeItem, updateQuantity, clear }}>
             {children}
         </CartContext.Provider>
     )
