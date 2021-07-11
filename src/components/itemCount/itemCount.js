@@ -1,12 +1,14 @@
 import './itemCount.scss';
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { WORDINGS } from '../../wordings';
+import { CartContext } from '../../context/cartContext';
 
 export const ItemCount = (props) => {
-    const { stock, initial, onAdd } = props;
+    const { stock, initial, onAdd, itemId, quantityInCart } = props;
 
-    const [count, setCount] = useState(initial);
+    const [count, setCount] = useState(quantityInCart || initial);
+    const { updateQuantity } = useContext(CartContext);
 
     let addedCount;
     let subtractedCount;
@@ -29,11 +31,13 @@ export const ItemCount = (props) => {
     const addItem = () => {
         addedCount = count + 1;
         setCount(addedCount);
+        quantityInCart && updateQuantity(itemId, addedCount);
     };
 
     const subtractItem = () => {
         subtractedCount = count - 1;
         setCount(subtractedCount);
+        quantityInCart && updateQuantity(itemId, subtractedCount);
     };
 
     const subtractButtonClassNames = classNames(
@@ -65,7 +69,9 @@ export const ItemCount = (props) => {
                 <span className={textAreaClassNames}>{stock ? count : 0}</span>
                 <button onClick={() => addItem()} disabled={isAddDisabled} className={addButtonClassNames}>+</button>
             </div>
-            <button className={cartButtonClassNames} disabled={!stock} onClick={() => onAdd(count)}>{WORDINGS.ADD_TO_CART}</button>
+            {!quantityInCart && <button className={cartButtonClassNames} disabled={!stock} onClick={() => onAdd(count)}>
+                {WORDINGS.ADD_TO_CART}
+            </button>}
         </div>
     )
 }
