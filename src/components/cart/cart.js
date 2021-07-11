@@ -5,7 +5,7 @@ import { CartContext } from '../../context/cartContext';
 import { ItemCount } from '../itemCount/itemCount';
 
 export const Cart = () => {
-    const { cart } = useContext(CartContext);
+    const { cart, removeItem } = useContext(CartContext);
 
     const renderItemsInCart = () => {
         return cart.map(order => {
@@ -24,7 +24,7 @@ export const Cart = () => {
                     <h4 className="cart-list__item-title">{item.title}</h4>
                     <p className="cart-list__item-price">{item.price}</p>
                     <ItemCount {...itemCountProps} />
-                    <button className="cart-list__item-delete">X</button>
+                    <button className="cart-list__item-remove" onClick={() => removeItem(item.id)}>X</button>
                 </li>
             )
         })
