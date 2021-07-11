@@ -1,6 +1,7 @@
 import './itemListContainer.scss';
 import { Fragment, useEffect, useState } from 'react';
 import { snakeCase } from 'snake-case';
+import { dataBase } from '../../firebase/firebase';
 import { ItemList } from '../itemList/itemList';
 import MOCK_DATA from '../../assets/MOCK_DATA.json';
 
@@ -24,6 +25,24 @@ export const ItemListContainer = (props) => {
 
         return setHasLoaded(false)
     }, [categoryId])
+
+    useEffect(() => {
+        const db = dataBase;
+        const itemCollection = db.collection('productos');
+        // Usamos where() para filtrar una collection, y lo podemos encadenar para filtrar aún más. Con limit() ponemos un tope al tamño de la collection
+        const higPriceCollection = itemCollection.where('price', '>', 10000).limit(10);
+        const higPriceCollectionOfConsoles = itemCollection.where('price', '>', 10000).where('category', '==', 'Consolas');
+        itemCollection.get().then(querySnapshot => { // querySnapshot es una referencia a la data
+            if(querySnapshot.size === 0) {
+                console.log('No hay resultados!')
+            }
+            setItems(querySnapshot.docs.map(doc => doc.data()));
+        }).catch(error => {
+            console.log('Error al buscar productos:', error)
+        }).finally(() => { // Sucede por más que la promise salga bien o mal (then o catch)
+            setHasLoaded(true);
+        })
+    }, [])
 
     return (
         <Fragment>
