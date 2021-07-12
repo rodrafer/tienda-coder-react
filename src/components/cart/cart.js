@@ -4,6 +4,7 @@ import { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/cartContext';
 import { ItemCount } from '../itemCount/itemCount';
+import { WORDINGS } from '../../wordings';
 
 export const Cart = () => {
     const { cart, totalCount, removeItem } = useContext(CartContext);
@@ -40,23 +41,23 @@ export const Cart = () => {
     const renderEmptyCart = () => {
         return (
             <div className="cart-empty">
-                <h3>¡Tu carrito está vacío!</h3>
-                <p>Volvé a la página principal para agregar increíbles productos</p>
-                <Link to="/" className="cart-empty__back-to-home main-button">Volver al inicio</Link>
+                <h3>{WORDINGS.EMPTY_CART}</h3>
+                <p>{WORDINGS.TURN_TO_HOME_PAGE}</p>
+                <Link to="/" className="cart-empty__back-to-home main-button">{WORDINGS.BACK_TO_HOME}</Link>
             </div>
         )
     }
 
     return (
         <div className="cart">
-            <h1 className="cart-title">Resumen de tu compra</h1>
+            <h1 className="cart-title">{WORDINGS.CART_SUMMARY}</h1>
             {cart.length
                 ? <Fragment>
                     <ul className="cart-list">
                         {renderItemsInCart()}
                     </ul>
                     <div className="cart-summary">
-                        <p className="cart-summary__message">Total a pagar:</p>
+                        <p className="cart-summary__message">{WORDINGS.TOTAL_TO_PAY}</p>
                         <p className="cart-summary__total">{totalCount}</p>
                     </div>
                 </Fragment>
