@@ -21,20 +21,26 @@ export const Cart = () => {
 
             return (
                 <li key={keyId} className="cart-list__item">
-                    <img src={item.pictureUrl} alt={item.title} className="cart-list__item-image" />
-                    <h4 className="cart-list__item-title">{item.title}</h4>
+                    <div className="cart-list__item-details">
+                        <div className="cart-list__image-container">
+                            <img src={item.pictureUrl} alt={item.title} className="cart-list__item-details-image" />
+                        </div>
+                        <h4 className="cart-list__item-details-title">{item.title}</h4>
+                    </div>
                     <p className="cart-list__item-price">{item.price}</p>
-                    <ItemCount {...itemCountProps} />
-                    <button className="cart-list__item-remove command-button" onClick={() => removeItem(item.id)}>X</button>
+                    <div className="cart-list__item-commands">
+                        <ItemCount {...itemCountProps} />
+                        <button className="cart-list__item-commands-remove command-button" onClick={() => removeItem(item.id)}>X</button>
+                    </div>
                 </li>
             )
         })
     }
 
-    const renderEmptyCartAction = () => {
+    const renderEmptyCart = () => {
         return (
             <div className="cart-empty">
-                <h4>¡Tu carrito está vacío!</h4>
+                <h3>¡Tu carrito está vacío!</h3>
                 <p>Volvé a la página principal para agregar increíbles productos</p>
                 <Link to="/" className="cart-empty__back-to-home main-button">Volver al inicio</Link>
             </div>
@@ -43,12 +49,12 @@ export const Cart = () => {
 
     return (
         <div className="cart">
-            <h1>Tu carrito</h1>
+            <h1 className="cart-title">Tu carrito</h1>
             {cart.length
                 ? <ul className="cart-list">
                     {renderItemsInCart()}
                 </ul>
-                : renderEmptyCartAction()}
+                : renderEmptyCart()}
         </div>
     )
 }
