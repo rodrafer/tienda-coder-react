@@ -1,12 +1,12 @@
 import './cart.scss';
 import { v4 as uuidv4 } from 'uuid';
-import { useContext } from 'react';
+import { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/cartContext';
 import { ItemCount } from '../itemCount/itemCount';
 
 export const Cart = () => {
-    const { cart, removeItem } = useContext(CartContext);
+    const { cart, totalCount, removeItem } = useContext(CartContext);
 
     const renderItemsInCart = () => {
         return cart.map(order => {
@@ -51,9 +51,15 @@ export const Cart = () => {
         <div className="cart">
             <h1 className="cart-title">Tu carrito</h1>
             {cart.length
-                ? <ul className="cart-list">
-                    {renderItemsInCart()}
-                </ul>
+                ? <Fragment>
+                    <ul className="cart-list">
+                        {renderItemsInCart()}
+                    </ul>
+                    <div className="cart-summary">
+                        <p>Total:</p>
+                        <p>{totalCount}</p>
+                    </div>
+                </Fragment>
                 : renderEmptyCart()}
         </div>
     )
