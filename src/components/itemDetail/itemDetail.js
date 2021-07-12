@@ -41,7 +41,7 @@ export const ItemDetail = (props) => {
             </div>
             <div className="item-detail__specs">
                 <h4 className="item-detail__specs-title">{item.title}</h4>
-                <p className="item-detail__specs-price">{item.price}</p>
+                <p className="item-detail__specs-price">${item.price}</p>
                 <p className="item-detail__specs-description">{item.description}</p>
             </div>
             <div className="item-detail__commands">

@@ -27,7 +27,7 @@ export const Cart = () => {
                         </div>
                         <h4 className="cart-list__item-details-title">{item.title}</h4>
                     </div>
-                    <p className="cart-list__item-price">{item.price}</p>
+                    <p className="cart-list__item-price">${item.price}</p>
                     <div className="cart-list__item-commands">
                         <ItemCount {...itemCountProps} />
                         <button className="cart-list__item-commands-remove command-button" onClick={() => removeItem(item.id)}>X</button>

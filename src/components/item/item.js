@@ -11,7 +11,7 @@ export const Item = (props) => {
                     <img alt={item.id} src={item.pictureUrl}></img>
                 </div>
                 <h4 className="item__title">{item.title}</h4>
-                <p className="item__price">{item.price}</p>
+                <p className="item__price">${item.price}</p>
             </div>
         </Link>
     )
