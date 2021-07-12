@@ -3,7 +3,9 @@
 .shopping-cart {
     padding: 0 $spacing-50;
     cursor: pointer;
-
+    display: flex;
+    flex-direction: column;
+    
     &__icon {
         height: $spacing-25;
     }
