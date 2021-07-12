@@ -1,4 +1,5 @@
 import './itemDetailContainer.scss';
+import spinner from '../../assets/double-ring-loader.gif'
 import { useEffect, useState } from 'react';
 import { ItemDetail } from '../itemDetail/itemDetail';
 import { WORDINGS } from '../../wordings';
@@ -22,7 +23,7 @@ export const ItemDetailContainer = (props) => {
         itemToShow
         ? <ItemDetail item={itemToShow} />
         : <div className="loading">
-            <p>{WORDINGS.LOADING_PRODUCT_DETAIL}</p>
+            <img className="loading__spinner" alt="spinner" src={spinner} />
         </div>
     )
 }

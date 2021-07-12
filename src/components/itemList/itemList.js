@@ -1,4 +1,5 @@
 import './itemList.scss';
+import spinner from '../../assets/double-ring-loader.gif'
 import { Fragment } from 'react';
 import { snakeCase } from 'snake-case';
 import { Item } from '../item/item';
@@ -26,7 +27,7 @@ export const ItemList = (props) => {
         } else {
             return (
                 <div className="item-list__loading">
-                    <p>{WORDINGS.SEARCHING_FOR_PRODUCTS}</p>
+                    <img className="item-list__loading-spinner" alt="spinner" src={spinner} />
                 </div>
             )
         }

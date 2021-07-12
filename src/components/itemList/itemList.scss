@@ -14,5 +14,9 @@
         min-height: calc(100vh - 148px);
         display: flex;
         align-items: center;
+
+        &-spinner {
+            height: $spacing-75;
+        }
     }
 }
