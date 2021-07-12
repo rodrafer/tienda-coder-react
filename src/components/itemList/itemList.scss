@@ -2,12 +2,17 @@
 @import "../../styles/components";
 
 .item-list {
-    min-height: 20vh;
-    height: auto;
     margin: $spacing-20 0 $spacing-20;
     color: $font-color-base;
 
     &__example {
         margin-top: 0;
+    }
+
+    &__loading,
+    &__not-found {
+        min-height: calc(100vh - 148px);
+        display: flex;
+        align-items: center;
     }
 }

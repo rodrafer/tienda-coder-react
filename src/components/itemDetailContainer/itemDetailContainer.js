@@ -22,7 +22,7 @@ export const ItemDetailContainer = (props) => {
         itemToShow
         ? <ItemDetail item={itemToShow} />
         : <div className="loading">
-            {WORDINGS.LOADING_PRODUCT_DETAIL}
+            <p>{WORDINGS.LOADING_PRODUCT_DETAIL}</p>
         </div>
     )
 }

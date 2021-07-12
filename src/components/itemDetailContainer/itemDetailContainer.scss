@@ -1,6 +1,8 @@
 @import "../../styles/variables";
 
 .loading {
-    min-height: 20vh;
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
     color: $font-color-base;
 }
