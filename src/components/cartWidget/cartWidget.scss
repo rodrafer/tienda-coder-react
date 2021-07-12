@@ -1,7 +1,17 @@
 @import "../../styles/variables";
 
 .shopping-cart {
-    height: $spacing-25;
     padding: 0 $spacing-50;
     cursor: pointer;
+
+    &__icon {
+        height: $spacing-25;
+    }
+
+    &__quantity {
+        color: $font-color-base;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-regular;
+        margin: 0;
+    }
 }
