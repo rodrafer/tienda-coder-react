@@ -4,6 +4,7 @@ export const CartContext = createContext([]);
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
+    const [totalQuantity, setTotalQuantity] = useState(0);
     const [totalCount, setTotalCount] = useState(0);
 
     const isInCart = (itemIdToCheck) => cart.some(order => order.item.id === itemIdToCheck);
@@ -28,6 +29,12 @@ export const CartProvider = ({ children }) => {
         // Logging cart's value every time it changes (add/remove item) just to check if it behaves as expected
         console.log(cart)
 
+        let accumulatedQuantity = 0;
+        cart.forEach(order => {
+            accumulatedQuantity += order.quantity;
+            setTotalQuantity(accumulatedQuantity);
+        });
+
         let accumulatedCount = 0;
         cart.forEach(order => {
             const { item, quantity } = order;
@@ -38,7 +45,18 @@ export const CartProvider = ({ children }) => {
     }, [cart]);
 
     return (
-        <CartContext.Provider value={{ cart, totalCount, isInCart, addItem, removeItem, updateQuantity, clear }}>
+        <CartContext.Provider value={
+            {
+                cart,
+                totalQuantity,
+                totalCount,
+                isInCart,
+                addItem,
+                removeItem,
+                updateQuantity,
+                clear
+            }
+        }>
             {children}
         </CartContext.Provider>
     )
