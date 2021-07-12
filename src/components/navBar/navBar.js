@@ -8,6 +8,8 @@ import { CartWidget } from '../cartWidget/cartWidget';
 import { WORDINGS } from '../../wordings';
 import { CartContext } from '../../context/cartContext';
 
+const replaceSpecialCharacters = require('replace-special-characters');
+
 export const NavBar = () => {
     const { cart } = useContext(CartContext);
     const shouldRenderCartWidget = !!cart.length;
@@ -17,7 +19,7 @@ export const NavBar = () => {
             const keyId = uuidv4().slice(0, 4);
             return (
                 <li key={keyId} className="category">
-                    <NavLink to={`/category/${snakeCase(category)}`} activeClassName="category__link">{category}</NavLink>
+                    <NavLink to={`/category/${snakeCase(replaceSpecialCharacters(category))}`} activeClassName="category__link">{category}</NavLink>
                 </li>
             )
         })
