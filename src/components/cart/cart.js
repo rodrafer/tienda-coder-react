@@ -49,15 +49,15 @@ export const Cart = () => {
 
     return (
         <div className="cart">
-            <h1 className="cart-title">Tu carrito</h1>
+            <h1 className="cart-title">Resumen de tu compra</h1>
             {cart.length
                 ? <Fragment>
                     <ul className="cart-list">
                         {renderItemsInCart()}
                     </ul>
                     <div className="cart-summary">
-                        <p>Total:</p>
-                        <p>{totalCount}</p>
+                        <p className="cart-summary__message">Total a pagar:</p>
+                        <p className="cart-summary__total">{totalCount}</p>
                     </div>
                 </Fragment>
                 : renderEmptyCart()}

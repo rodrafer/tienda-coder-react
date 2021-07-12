@@ -11,6 +11,7 @@
 
     &-list {
         padding: 0;
+        min-height: calc(100vh - 290px);
 
         &__item {
             display: flex;
@@ -56,6 +57,24 @@
                     border: none;
                 }
             }
+        }
+    }
+
+    &-summary {
+        background-color: $background-black;
+        border: 1px solid $border-blue;
+        display: flex;
+        justify-content: flex-end;
+        height: $spacing-50;
+        margin-bottom: $spacing-15;
+        
+        &__message {
+            margin-right: $spacing-20;
+        }
+        
+        &__total {
+            font-weight: $font-weight-bold;
+            margin-right: $spacing-10;
         }
     }
     
