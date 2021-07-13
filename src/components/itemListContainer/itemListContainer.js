@@ -5,6 +5,8 @@ import { dataBase } from '../../firebase/firebase';
 import { ItemList } from '../itemList/itemList';
 import MOCK_DATA from '../../assets/MOCK_DATA.json';
 
+const replaceSpecialCharacters = require('replace-special-characters');
+
 export const ItemListContainer = (props) => {
     const { greeting, categoryId } = props;
 
@@ -14,7 +16,7 @@ export const ItemListContainer = (props) => {
     useEffect(() => {
         const getItems = new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve(MOCK_DATA.filter(item => categoryId ? snakeCase(item.category) === categoryId : item))
+                resolve(MOCK_DATA.filter(item => categoryId ? snakeCase(replaceSpecialCharacters(item.category)) === categoryId : item))
             }, 2000)
         })
 
@@ -47,7 +49,7 @@ export const ItemListContainer = (props) => {
     return (
         <Fragment>
             {greeting && <h1 className="landing-title">{greeting}</h1>}
-            <ItemList items={items} hasLoaded={hasLoaded} />
+            <ItemList items={items} hasLoaded={hasLoaded} categoryId={categoryId} />
         </Fragment>
     )
 }
