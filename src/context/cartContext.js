@@ -4,6 +4,8 @@ export const CartContext = createContext([]);
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
+    const [totalQuantity, setTotalQuantity] = useState(0);
+    const [totalCount, setTotalCount] = useState(0);
 
     const isInCart = (itemIdToCheck) => cart.some(order => order.item.id === itemIdToCheck);
 
@@ -15,15 +17,46 @@ export const CartProvider = ({ children }) => {
         isInCart(itemId) && setCart(cart.filter(order => order.item.id !== itemId));
     }
 
+    const updateQuantity = (itemId, newQuantity) => {
+        // No sé por qué esto está funcionando... No debería ya que no puedo modificar cart directamente
+        cart.find(order => order.item.id === itemId).quantity = newQuantity;
+        setCart([...cart]);
+    }
+
     const clear = () => setCart([]);
 
     useEffect(() => {
         // Logging cart's value every time it changes (add/remove item) just to check if it behaves as expected
         console.log(cart)
+
+        let accumulatedQuantity = 0;
+        cart.forEach(order => {
+            accumulatedQuantity += order.quantity;
+            setTotalQuantity(accumulatedQuantity);
+        });
+
+        let accumulatedCount = 0;
+        cart.forEach(order => {
+            const { item, quantity } = order;
+            accumulatedCount += quantity * Number(item.price);
+            setTotalCount(accumulatedCount);
+        });
+
     }, [cart]);
 
     return (
-        <CartContext.Provider value={{ cart, isInCart, addItem, removeItem, clear }}>
+        <CartContext.Provider value={
+            {
+                cart,
+                totalQuantity,
+                totalCount,
+                isInCart,
+                addItem,
+                removeItem,
+                updateQuantity,
+                clear
+            }
+        }>
             {children}
         </CartContext.Provider>
     )

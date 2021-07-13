@@ -1,21 +1,35 @@
 import './itemList.scss';
+import spinner from '../../assets/double-ring-loader.gif'
 import { Fragment } from 'react';
+import { snakeCase } from 'snake-case';
 import { Item } from '../item/item';
 import { WORDINGS } from '../../wordings';
 
+const replaceSpecialCharacters = require('replace-special-characters');
+
 export const ItemList = (props) => {
-    const { items, hasLoaded } = props
+    const { items, hasLoaded, categoryId } = props
+
+    const titleCategory = categoryId && WORDINGS.CATEGORIES.find(category =>
+        snakeCase(replaceSpecialCharacters(category)) === categoryId
+    );
 
     const renderItemList = () => {
         if (hasLoaded) {
             return items.length
                 ? <Fragment>
-                    <h3 className="item-list__example">{WORDINGS.ITEMS_EXAMPLE}</h3>
+                    <h1 className="item-list__example">{titleCategory}</h1>
                     {items.map(item => <Item item={item} key={item.id} />)}
                 </Fragment>
-                : <h1>{WORDINGS.CONTENT_NOT_FOUND}</h1>
+                : <div className="item-list__not-found">
+                    <h1>{WORDINGS.CONTENT_NOT_FOUND}</h1>
+                </div>
         } else {
-            return <p>{WORDINGS.SEARCHING_FOR_PRODUCTS}</p>
+            return (
+                <div className="item-list__loading">
+                    <img className="item-list__loading-spinner" alt="spinner" src={spinner} />
+                </div>
+            )
         }
     }
 
