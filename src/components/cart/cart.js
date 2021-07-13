@@ -58,7 +58,7 @@ export const Cart = () => {
                     </ul>
                     <div className="cart-summary">
                         <button className="cart-summary__dismiss-cart main-button" onClick={() => clear()}>
-                            Cancelar compra
+                            {WORDINGS.DISMISS_CART}
                         </button>
                         <div className="cart-summary__wrapper">
                             <p className="cart-summary__message">{WORDINGS.TOTAL_TO_PAY}</p>

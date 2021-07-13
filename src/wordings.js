@@ -3,6 +3,7 @@ export const WORDINGS = {
     LANDING_TITLE: '¡Bienvenido a Reactive Games!',
     CART_SUMMARY: 'Resumen de tu compra',
     EMPTY_CART: '¡Tu carrito está vacío!',
+    DISMISS_CART: 'Cancelar compra',
 
     // CATEGORIES
     CATEGORIES: [
