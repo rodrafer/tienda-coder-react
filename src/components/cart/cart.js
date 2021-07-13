@@ -7,7 +7,7 @@ import { ItemCount } from '../itemCount/itemCount';
 import { WORDINGS } from '../../wordings';
 
 export const Cart = () => {
-    const { cart, totalCount, removeItem } = useContext(CartContext);
+    const { cart, totalCount, removeItem, clear } = useContext(CartContext);
 
     const renderItemsInCart = () => {
         return cart.map(order => {
@@ -57,8 +57,13 @@ export const Cart = () => {
                         {renderItemsInCart()}
                     </ul>
                     <div className="cart-summary">
-                        <p className="cart-summary__message">{WORDINGS.TOTAL_TO_PAY}</p>
-                        <p className="cart-summary__total">{totalCount}</p>
+                        <button className="cart-summary__dismiss-cart main-button" onClick={() => clear()}>
+                            Cancelar compra
+                        </button>
+                        <div className="cart-summary__wrapper">
+                            <p className="cart-summary__message">{WORDINGS.TOTAL_TO_PAY}</p>
+                            <p className="cart-summary__total">{totalCount}</p>
+                        </div>
                     </div>
                 </Fragment>
                 : renderEmptyCart()}

@@ -64,12 +64,23 @@
         background-color: $background-black;
         border: 1px solid $border-blue;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
+        align-items: center;
         height: $spacing-50;
         margin-bottom: $spacing-15;
+
+        &__dismiss-cart {
+            height: $spacing-25;
+            font-size: $font-size-base;
+            margin-left: $spacing-10;
+        }
+
+        &__wrapper {
+            display: flex;
+        }
         
         &__message {
-            margin-right: $spacing-20;
+            margin-right: $spacing-15;
         }
         
         &__total {
