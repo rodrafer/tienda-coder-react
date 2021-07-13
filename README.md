@@ -140,3 +140,25 @@ Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 > - Utilizo _removeItem_ para quitar un ítem del estado _cart_ del _context_ al hacerse click en "Eliminar del carrito".
 - Agrego wordings de botones "Terminar mi compra" y "Eliminar del carrito".
 - Limpio y ordeno el código.
+
+### Versión 9
+- Agrego dos nuevos estados _totalQuantity_ y _totalCount_ en **CartContext** para persistir el valor de la cantidad total de ítems agregados al carrito y el precio total a pagar respectivamente. Estos valores se calculan con un _useEffect_ al modificarse en contenido de _cart_ (por agregarse o quitarse un orden de compra con cierta cantidad e ítem con precio).
+- Agrego nueva función _helper_, _updateQuantity_, para actualizar la cantidad a comprar de un ítem en una orden desde **Cart** mediante comandos itroducidos por **ItemCount**.
+- Adapto **ItemCount** para poder ser incluido en cada ítem de **Cart** y poder modificar la cantidad deseada de cada ítem. Si un _itemId_ y una cantidad en el carrito le es pasada por props al componente, dejo de mostrar el botón "Agregar al carrito" y utilizo el _helper_ _updateQuantity()_ de **CartContext** en cada comando para actualizar la cantidad de la orden en _cart_ cuyo ítem posee id igual a _itemId_ al hacer click en los comandos.
+- Creo componente **Cart** para mostrar el carrito con el resumen de compra. El mismo consume el estado _cart_ de **CartContext** así como ciertos _helpers_ del mismo. Funcionalidades incluidas en **Cart**:
+> - Lista de órdenes agregadas al carrito consistentes cada una en un ítem y una cantidad, mostrando imagen, título y precio de cada ítem junto con la cantidad solicitada desde **ItemCount**, y comandos para aumentar o disminuir la cantidad (los cuales fueron introducidos con un **ItemCount**), y un ícono de cancelación de la órden que llama al helper _removeItem()_ de **CartContext** al hacerle click.
+> - Botón "Cancelar compra" para eliminar todos los ítems del carrito llamando al _helper_ _clear()_ de **CartContext** al hacerle click.
+> - Suma total a pagar de la compra obtenida del estado _totalCount_ del **CartContext**.
+> - Mensaje y botón para volver a la página principal que se muestra condicionalmente en caso de no haber ítems en el carrito.
+- Incluyo **Cart** en **CartPage**, a la cual se llega navegando a la ruta `/cart` (esto quedó especificado previamente en **App** dentro de un `Route` en el `BrowserRouter`).
+- Modifico **CartWidget** para mostrar cantidad total de ítems en el carrito en tiempo real consumiento **CartContext** y accediendo al valor del estado _totalQuantity_ del mismo. Además, redirijo a la ruta `/cart` para mostrar **Cart** al hacer click en el _widget_ utilizando un `Link`.
+- Modifico **NavBar** para mostrar condicionalmente **CartWidget** solamente si _cart_ no está vacío (es decir, que se ha agregado al menos una orden con ítem y cantidad a _cart_).
+- Instalo el paquete `replace-special-characters` con `npm` para reemplazar caracteres especiales en los nombres de las categorías (como **í** por **i** en "Periféricos") para evitar que la función `snakeCase` los convierta en guiones bajos al convertir los nombres de las categorías en **NavBar** a rutas de la url y se muestren incorrectamente. Lo utilizo también para corregir esto mismo al compara con _categoryId_ en **ItemListContainer** y **ItemList**.
+- Paso _categoryId_ por props de **ItemListContainer** a **ItemList** para que muestre el nombre de la categoría como título de la página al navegar a una categoría.
+- Elimino signo `$`del precio de los ítems mockeados en **MOCK_DATA.json** para poder calcular el precio total del carrito en **CartContext**, e incluyo el signo por fuera del precio en **Item**, **ItemDetail** y **Cart**.
+- Agrego spinner para reemplazar wordings de espera en **ItemList** y **ItemDetailContainer**.
+- Corrijo problema de altura en _pages_ en general.
+- Doy estilos a componentes en general.
+- Agrego y modifico wordings necesarios en **wordings.js**.
+- Elimino variable de estilo innecesaria.
+- Limpio y ordeno el código.
