@@ -2,7 +2,6 @@ import './itemDetailContainer.scss';
 import spinner from '../../assets/double-ring-loader.gif'
 import { useEffect, useState } from 'react';
 import { ItemDetail } from '../itemDetail/itemDetail';
-import { WORDINGS } from '../../wordings';
 import MOCK_DATA from '../../assets/MOCK_DATA.json';
 
 export const ItemDetailContainer = (props) => {
