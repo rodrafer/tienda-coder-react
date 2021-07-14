@@ -3,7 +3,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { snakeCase } from 'snake-case';
 import { dataBase } from '../../firebase/firebase';
 import { ItemList } from '../itemList/itemList';
-import MOCK_DATA from '../../assets/MOCK_DATA.json';
+import { WORDINGS } from '../../wordings';
 
 const replaceSpecialCharacters = require('replace-special-characters');
 
@@ -11,45 +11,39 @@ export const ItemListContainer = (props) => {
     const { greeting, categoryId } = props;
 
     const [items, setItems] = useState([]);
+    const [category, setCategory] = useState();
     const [hasLoaded, setHasLoaded] = useState(false);
 
     useEffect(() => {
-        const getItems = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(MOCK_DATA.filter(item => categoryId ? snakeCase(replaceSpecialCharacters(item.category)) === categoryId : item))
-            }, 2000)
-        })
+        const currentCategory = categoryId && WORDINGS.CATEGORIES.find(category =>
+            snakeCase(replaceSpecialCharacters(category)) === categoryId
+        );
+        setCategory(currentCategory);
 
-        getItems.then(items => {
-            setItems(items)
-            setHasLoaded(true)
-        })
+        const itemCollection = dataBase.collection('productos');
+        const collectionToShow = currentCategory ? itemCollection.where('category', '==', currentCategory) : itemCollection;
 
-        return setHasLoaded(false)
-    }, [categoryId])
-
-    useEffect(() => {
-        const db = dataBase;
-        const itemCollection = db.collection('productos');
-        // Usamos where() para filtrar una collection, y lo podemos encadenar para filtrar aún más. Con limit() ponemos un tope al tamño de la collection
-        const higPriceCollection = itemCollection.where('price', '>', 10000).limit(10);
-        const higPriceCollectionOfConsoles = itemCollection.where('price', '>', 10000).where('category', '==', 'Consolas');
-        itemCollection.get().then(querySnapshot => { // querySnapshot es una referencia a la data
-            if(querySnapshot.size === 0) {
-                console.log('No hay resultados!')
+        collectionToShow.get().then(querySnapshot => {
+            if (querySnapshot.size === 0) {
+                console.log('No results!')
             }
-            setItems(querySnapshot.docs.map(doc => doc.data()));
+            setItems(querySnapshot.docs.map(doc => {
+                return {
+                    id: doc.id,
+                    ...doc.data()
+                }
+            }));
         }).catch(error => {
-            console.log('Error al buscar productos:', error)
-        }).finally(() => { // Sucede por más que la promise salga bien o mal (then o catch)
+            console.log('Error while searching for products:', error)
+        }).finally(() => {
             setHasLoaded(true);
         })
-    }, [])
+    }, [categoryId])
 
     return (
         <Fragment>
             {greeting && <h1 className="landing-title">{greeting}</h1>}
-            <ItemList items={items} hasLoaded={hasLoaded} categoryId={categoryId} />
+            <ItemList items={items} hasLoaded={hasLoaded} titleCategory={category} />
         </Fragment>
     )
 }
