@@ -1,28 +1,32 @@
 import './itemDetailContainer.scss';
-import spinner from '../../assets/double-ring-loader.gif'
 import { useEffect, useState } from 'react';
+import { dataBase } from '../../firebase/firebase';
 import { ItemDetail } from '../itemDetail/itemDetail';
-import MOCK_DATA from '../../assets/MOCK_DATA.json';
 
 export const ItemDetailContainer = (props) => {
-    const { itemId } = props
+    const { itemId } = props;
+
     const [itemToShow, setItemToShow] = useState();
+    const [hasLoaded, setHasLoaded] = useState(false);
 
     useEffect(() => {
-        const getItem = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(MOCK_DATA.find(item => item.id.toString() === itemId))
-            }, 2000)
+        const itemCollection = dataBase.collection('productos');
+        const item = itemCollection.doc(itemId);
+
+        item.get().then(doc => {
+            if (!doc.exists) {
+                console.log('This item doesn\'t exist');
+                return               
+            }
+            console.log('Item found');
+            setItemToShow({ id: doc.id, ...doc.data() })
+        }).catch(error => {
+            console.log('Error while searching for items:', error)
+        }).finally(() => {
+            setHasLoaded(true);
         })
 
-        getItem.then(item => setItemToShow(item))
     }, [itemId])
 
-    return (
-        itemToShow
-        ? <ItemDetail item={itemToShow} />
-        : <div className="loading">
-            <img className="loading__spinner" alt="spinner" src={spinner} />
-        </div>
-    )
+    return <ItemDetail item={itemToShow} hasLoaded={hasLoaded} />
 }

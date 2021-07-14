@@ -1,12 +1,13 @@
 import './itemDetail.scss';
 import { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import spinner from '../../assets/double-ring-loader.gif';
 import { ItemCount } from '../itemCount/itemCount';
 import { CartContext } from '../../context/cartContext';
 import { WORDINGS } from '../../wordings';
 
 export const ItemDetail = (props) => {
-    const { item } = props;
+    const { item, hasLoaded } = props;
     const { isInCart, addItem, removeItem } = useContext(CartContext);
 
     const onAdd = (count) => {
@@ -34,8 +35,8 @@ export const ItemDetail = (props) => {
             : <ItemCount {...itemCountPops} />
     }
 
-    return item && (
-        <div className="item-detail">
+    return hasLoaded
+        ? <div className="item-detail">
             <div className="item-detail__image">
                 <img alt={item.id} src={item.pictureUrl}></img>
             </div>
@@ -48,5 +49,7 @@ export const ItemDetail = (props) => {
                 {renderBuyingProcessCommands()}
             </div>
         </div>
-    )
+        : <div className="item-detail__loading">
+            <img className="item-detail__loading-spinner" alt="spinner" src={spinner} />
+        </div>
 }
