@@ -162,3 +162,23 @@ Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 - Agrego y modifico wordings necesarios en **wordings.js**.
 - Elimino variable de estilo innecesaria.
 - Limpio y ordeno el código.
+
+### Versión 10
+- Creo proyecto `tienda-coder-react` en Firebase para acceder a una Firestore Database donde almacenar los datos de los productos de la tienda.
+- Creo una colección "productos" en la base de datos con diez documentos, uno por para producto ejemplo de la tienda, con las mismas propiedades almacenadas previamente en **MOCK_DATA.json** y un `id` generado automáticamente para cada uno.
+- Instalo `firebase` en el proyecto de React y configuro _firebase_ y la _firestore database_ mediante el archivo **firebase.js** utilizando las _keys_ de configuración provistas por Firebase al crear el proyecto.
+- Cambios en **ItemListContainer**:
+> - Elimino _async mock_ para obtener ítems de **MOCK_DATA.json** e implemento una llamada a la _firestore database_ en su lugar.
+> - Obtengo la categoría actual en caso de que se haya navegado a una categoría y la almaceno en un estado propio.
+> - Obtengo la colección "productos" de la _database_ y la filtro su contenido a aquellos ítems de la categoría actual en caso de existir un _categoryId_ proveniente de los _url params_ al navegar a una categoría. Si no se ha navegado a una categoría, obtengo la colección completa de productos (para mostrar como lista en la **HomePage**).
+> - Realizo una _query_ `get()` sobre la colección resultante y seteo los ítems resultantes como lista de ítems en un estado propio en caso de resolverse la _promise_ y existir ítems, para pasarla por props a **ItemList**.
+> - Muestro mensaje de error por consola en caso de rechazarse la _promise_.
+> - Seteo `hasLoaded` a _true_ luego de resolverse o rechazarse la _promise_.
+> - Paso categoría actual del _state_ por props a **ItemList** para que lo muestre como título de la página de la categoría correspondiente de productos.
+- Cambios en **ItemDetailContainer**:
+> - Elimino _async mock_ para obtener ítems de **MOCK_DATA.json** e implemento una llamada a la _firestore database_ en su lugar.
+> - Obtengo la colección "productos" de la _database_ y accedo al documento cuyo _id_ es igual al `itemId` obtendio de los _url params_ al navegar al detalle de un ítem con ese _id_
+> - Realizo una _query_ `get()` sobre el documento resultante y seteo la data y el _id_ del mismo como un objeto ítem en un estado propio en caso de resolverse la _promise_ y existir el documento, para pasarlo por props a **ItemDetail**.
+> - Muestro mensaje de error por consola en caso de rechazarse la _promise_.
+> - Seteo `hasLoaded` a _true_ luego de resolverse o rechazarse la _promise_.
+> - Elimino _spinner_ y lógica de _loading_ y paso el valor de `hasLoaded` por props a **ItemDetail** para transferirle dicha lógica y la responsabilidad de mostrar el _spinner_.

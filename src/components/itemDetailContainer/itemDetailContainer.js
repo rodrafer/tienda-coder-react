@@ -12,6 +12,7 @@ export const ItemDetailContainer = (props) => {
     useEffect(() => {
         const itemCollection = dataBase.collection('productos');
         const item = itemCollection.doc(itemId);
+
         item.get().then(doc => {
             if (!doc.exists) {
                 console.log('This item doesn\'t exist');
@@ -24,6 +25,7 @@ export const ItemDetailContainer = (props) => {
         }).finally(() => {
             setHasLoaded(true);
         })
+
     }, [itemId])
 
     return <ItemDetail item={itemToShow} hasLoaded={hasLoaded} />

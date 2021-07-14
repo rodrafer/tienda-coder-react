@@ -38,6 +38,7 @@ export const ItemListContainer = (props) => {
         }).finally(() => {
             setHasLoaded(true);
         })
+
     }, [categoryId])
 
     return (
