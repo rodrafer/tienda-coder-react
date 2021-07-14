@@ -1,18 +1,11 @@
 import './itemList.scss';
 import spinner from '../../assets/double-ring-loader.gif'
 import { Fragment } from 'react';
-import { snakeCase } from 'snake-case';
 import { Item } from '../item/item';
 import { WORDINGS } from '../../wordings';
 
-const replaceSpecialCharacters = require('replace-special-characters');
-
 export const ItemList = (props) => {
-    const { items, hasLoaded, categoryId } = props
-
-    const titleCategory = categoryId && WORDINGS.CATEGORIES.find(category =>
-        snakeCase(replaceSpecialCharacters(category)) === categoryId
-    );
+    const { items, hasLoaded, titleCategory } = props
 
     const renderItemList = () => {
         if (hasLoaded) {
