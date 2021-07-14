@@ -1,47 +1,30 @@
 import './itemDetailContainer.scss';
-import spinner from '../../assets/double-ring-loader.gif'
 import { useEffect, useState } from 'react';
 import { dataBase } from '../../firebase/firebase';
 import { ItemDetail } from '../itemDetail/itemDetail';
-import MOCK_DATA from '../../assets/MOCK_DATA.json';
 
 export const ItemDetailContainer = (props) => {
-    const { itemId } = props
+    const { itemId } = props;
+
     const [itemToShow, setItemToShow] = useState();
+    const [hasLoaded, setHasLoaded] = useState(false);
 
     useEffect(() => {
-        const getItem = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(MOCK_DATA.find(item => item.id.toString() === itemId))
-            }, 2000)
-        })
-
-        getItem.then(item => setItemToShow(item))
-    }, [itemId]);
-
-    useEffect(() => {
-        const db = dataBase;
-        const itemCollection = db.collection('productos');
+        const itemCollection = dataBase.collection('productos');
         const item = itemCollection.doc(itemId);
         item.get().then(doc => {
             if (!doc.exists) {
-                console.log('No existe este ítem');
+                console.log('This item doesn\'t exist');
                 return               
             }
-            console.log('Ítem encontrado');
-            setItemToShow({ id: doc.id, ...doc.data() }) // firebase devuelve doc con id, ref, metadata y data() separado del id
+            console.log('Item found');
+            setItemToShow({ id: doc.id, ...doc.data() })
         }).catch(error => {
-            console.log('Error al buscar ítems:', error)
-        }).finally(() => { // Sucede por más que la promise salga bien o mal (then o catch)
-            // setHasLoaded(true);
+            console.log('Error while searching for items:', error)
+        }).finally(() => {
+            setHasLoaded(true);
         })
-    }, [])
+    }, [itemId])
 
-    return (
-        itemToShow
-        ? <ItemDetail item={itemToShow} />
-        : <div className="loading">
-            <img className="loading__spinner" alt="spinner" src={spinner} />
-        </div>
-    )
+    return <ItemDetail item={itemToShow} hasLoaded={hasLoaded} />
 }

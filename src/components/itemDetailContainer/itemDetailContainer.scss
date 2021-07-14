@@ -1,12 +1,1 @@
 @import "../../styles/variables";
-
-.loading {
-    min-height: calc(100vh - 148px);
-    display: flex;
-    align-items: center;
-    color: $font-color-base;
-
-    &__spinner {
-        height: $spacing-75;
-    }
-}
