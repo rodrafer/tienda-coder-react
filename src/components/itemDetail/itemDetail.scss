@@ -60,4 +60,14 @@
             margin-top: $spacing-20;
         }
     }
+
+    &__loading {
+        min-height: calc(100vh - 70px);
+        display: flex;
+        align-items: center;
+    
+        &-spinner {
+            height: $spacing-75;
+        }
+    }
 }
