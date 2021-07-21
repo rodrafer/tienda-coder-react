@@ -7,7 +7,7 @@ import { CartContext } from '../../context/cartContext';
 import { WORDINGS } from '../../wordings';
 
 export const ItemDetail = (props) => {
-    const { item, hasLoaded } = props;
+    const { item, hasLoaded, foundItem } = props;
     const { isInCart, addItem, removeItem } = useContext(CartContext);
 
     const onAdd = (count) => {
@@ -28,6 +28,9 @@ export const ItemDetail = (props) => {
                 <Link to="/cart" className="finish-buying-button main-button">
                     {WORDINGS.FINISH_BUYING}
                 </Link>
+                <Link to="/" className="continue-buying-button main-button">
+                    {WORDINGS.CONTINUE_BUYING}
+                </Link>
                 <button className="remove-item-button main-button" onClick={() => removeItem(item.id)}>
                     {WORDINGS.REMOVE_FROM_CART}
                 </button>
@@ -36,19 +39,23 @@ export const ItemDetail = (props) => {
     }
 
     return hasLoaded
-        ? <div className="item-detail">
-            <div className="item-detail__image">
-                <img alt={item.id} src={item.pictureUrl}></img>
+        ? foundItem
+            ? <div className="item-detail">
+                <div className="item-detail__image">
+                    <img alt={item.id} src={item.pictureUrl}></img>
+                </div>
+                <div className="item-detail__specs">
+                    <h4 className="item-detail__specs-title">{item.title}</h4>
+                    <p className="item-detail__specs-price">${item.price}</p>
+                    <p className="item-detail__specs-description">{item.description}</p>
+                </div>
+                <div className="item-detail__commands">
+                    {renderBuyingProcessCommands()}
+                </div>
             </div>
-            <div className="item-detail__specs">
-                <h4 className="item-detail__specs-title">{item.title}</h4>
-                <p className="item-detail__specs-price">${item.price}</p>
-                <p className="item-detail__specs-description">{item.description}</p>
+            : <div className="item-list__not-found">
+                <h1>{WORDINGS.CONTENT_NOT_FOUND}</h1>
             </div>
-            <div className="item-detail__commands">
-                {renderBuyingProcessCommands()}
-            </div>
-        </div>
         : <div className="item-detail__loading">
             <img className="item-detail__loading-spinner" alt="spinner" src={spinner} />
         </div>

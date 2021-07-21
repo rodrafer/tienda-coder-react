@@ -34,7 +34,7 @@ export const ItemListContainer = (props) => {
                 }
             }));
         }).catch(error => {
-            console.log('Error while searching for products:', error)
+            console.log('Error while searching for products: ', error)
         }).finally(() => {
             setHasLoaded(true);
         })
@@ -44,7 +44,7 @@ export const ItemListContainer = (props) => {
     return (
         <Fragment>
             {greeting && <h1 className="landing-title">{greeting}</h1>}
-            <ItemList items={items} hasLoaded={hasLoaded} titleCategory={category} />
+            <ItemList items={items} hasLoaded={hasLoaded} titleCategory={category} categoryId={categoryId} />
         </Fragment>
     )
 }

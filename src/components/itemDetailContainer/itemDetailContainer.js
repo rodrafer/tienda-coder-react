@@ -8,6 +8,7 @@ export const ItemDetailContainer = (props) => {
 
     const [itemToShow, setItemToShow] = useState();
     const [hasLoaded, setHasLoaded] = useState(false);
+    const [foundItem, setFoundItem] = useState(true);
 
     useEffect(() => {
         const itemCollection = dataBase.collection('productos');
@@ -16,7 +17,8 @@ export const ItemDetailContainer = (props) => {
         item.get().then(doc => {
             if (!doc.exists) {
                 console.log('This item doesn\'t exist');
-                return               
+                setFoundItem(false);
+                return
             }
             console.log('Item found');
             setItemToShow({ id: doc.id, ...doc.data() })
@@ -28,5 +30,5 @@ export const ItemDetailContainer = (props) => {
 
     }, [itemId])
 
-    return <ItemDetail item={itemToShow} hasLoaded={hasLoaded} />
+    return <ItemDetail item={itemToShow} hasLoaded={hasLoaded} foundItem={foundItem} />
 }

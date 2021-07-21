@@ -2,11 +2,11 @@
 @import "../../styles/components";
 
 .item-list {
-    margin: $spacing-20 0 $spacing-20;
+    margin-bottom: $spacing-20;
     color: $font-color-base;
 
-    &__example {
-        margin-top: 0;
+    &__title {
+        margin: $spacing-50 0;
     }
 
     &__loading,
