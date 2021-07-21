@@ -73,13 +73,18 @@
         height: $spacing-50;
         margin-bottom: $spacing-15;
 
-        &__dismiss-cart {
+        &__dismiss-cart,
+        &__checkout,
+        &__buy-again {
             height: $spacing-25;
+            padding: 1px 6px;
             font-size: $font-size-base;
             margin-left: $spacing-10;
+            box-sizing: border-box;
         }
 
-        &__wrapper {
+        &__info,
+        &__actions {
             display: flex;
         }
         
@@ -90,6 +95,16 @@
         &__total {
             font-weight: $font-weight-bold;
             margin-right: $spacing-10;
+        }
+
+        &__loading {
+            height: $spacing-50;
+            display: flex;
+            align-items: center;
+        
+            &-spinner {
+                height: $spacing-25;
+            }
         }
     }
     

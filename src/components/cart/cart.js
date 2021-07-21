@@ -2,12 +2,13 @@ import './cart.scss';
 import { v4 as uuidv4 } from 'uuid';
 import { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import spinner from '../../assets/double-ring-loader.gif';
 import { CartContext } from '../../context/cartContext';
 import { ItemCount } from '../itemCount/itemCount';
 import { WORDINGS } from '../../wordings';
 
 export const Cart = () => {
-    const { cart, totalCount, removeItem, clear } = useContext(CartContext);
+    const { cart, totalCount, removeItem, getFinalOrder, orderId, isLoading, clear } = useContext(CartContext);
 
     const renderItemsInCart = () => {
         return cart.map(order => {
@@ -57,10 +58,26 @@ export const Cart = () => {
                         {renderItemsInCart()}
                     </ul>
                     <div className="cart-summary">
-                        <button className="cart-summary__dismiss-cart main-button" onClick={() => clear()}>
-                            {WORDINGS.DISMISS_CART}
-                        </button>
-                        <div className="cart-summary__wrapper">
+                        <div className="cart-summary__actions">
+                            {orderId
+                                ? <Link to="/" className="cart-summary__buy-again main-button" onClick={() => clear()}>
+                                    {WORDINGS.BUY_AGAIN}
+                                </Link>
+                                : <Fragment>
+                                    <button className="cart-summary__dismiss-cart main-button" onClick={() => clear()}>
+                                        {WORDINGS.DISMISS_CART}
+                                    </button>
+                                    <button className="cart-summary__checkout main-button" onClick={() => console.log(getFinalOrder())}>
+                                        {WORDINGS.BUY}
+                                    </button>
+                                </Fragment>}
+                        </div>
+                        {isLoading
+                            ? <div className="cart-summary__loading">
+                                <img className="cart-summary__loading-spinner" alt="spinner" src={spinner} />
+                            </div>
+                            : orderId && <p>{WORDINGS.THANKS_FOR_BUYING} <span>{orderId}</span></p>}
+                        <div className="cart-summary__info">
                             <p className="cart-summary__message">{WORDINGS.TOTAL_TO_PAY}</p>
                             <p className="cart-summary__total">{totalCount}</p>
                         </div>
