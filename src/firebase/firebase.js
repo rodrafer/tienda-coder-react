@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 // Your web app's Firebase configuration
-var firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyAbocMOmauev-R3zkq4clUskgf7A76r2uc",
     authDomain: "tienda-coder-react.firebaseapp.com",
     projectId: "tienda-coder-react",
@@ -12,6 +12,6 @@ var firebaseConfig = {
 };
 
 // Initialize Firebase
-const fb = firebase.initializeApp(firebaseConfig);
+export const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-export const dataBase = fb.firestore();
+export const dataBase = firebaseApp.firestore();
