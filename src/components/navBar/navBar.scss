@@ -27,11 +27,33 @@
             .category {
                 padding-left: $spacing-15;
                 cursor: pointer;
-                
+
                 &__link {
                     color: $link-blue;
                 }
             }
+        }
+    }
+}
+
+.wrapper-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: $spacing-200;
+
+    .profile {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        width: $spacing-125;
+
+        &__picture {
+            height: $spacing-50;
+            box-shadow: $default-shadow;
+            border-radius: 50%;
         }
     }
 }

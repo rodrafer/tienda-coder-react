@@ -39,6 +39,11 @@
                 color: $font-color-disabled;
             }
         }
+
+        &--disabled {
+            border: 1px solid $border-disabled;
+            color: $font-color-disabled;
+        }
     }
 
     &__add-to-cart {

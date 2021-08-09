@@ -1,4 +1,4 @@
-@import './styles/variables';
+@import "./styles/variables";
 
 .app {
   text-align: center;
@@ -6,24 +6,28 @@
   grid-template-columns: 100vw;
   grid-template-rows: 70px minmax(calc(100vh - 70px), auto);
   grid-template-areas:
-      "header"
-      "content";
+    "header"
+    "content";
 
   &__header {
-      grid-area: header;
-      background-color: $background-black;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
+    grid-area: header;
+    background-color: $background-black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &__content {
-      grid-area: content;
-      background-color: $background-blue;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
+    grid-area: content;
+    background-color: $background-blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    &--login {
+      justify-content: center;
+    }
   }
 }

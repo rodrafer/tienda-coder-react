@@ -182,3 +182,57 @@ Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 > - Muestro mensaje de error por consola en caso de rechazarse la _promise_.
 > - Seteo `hasLoaded` a _true_ luego de resolverse o rechazarse la _promise_.
 > - Elimino _spinner_ y lógica de _loading_ y paso el valor de `hasLoaded` por props a **ItemDetail** para transferirle dicha lógica y la responsabilidad de mostrar el _spinner_.
+
+
+## Versión 11
+- Cambios en **CartContext**:
+>- Creo función `getFinalOrder()` para agregar una nueva orden en la colección _órdenes_ de _firestore_ con un buyer hardcodeado temporalmente.
+>- Creo estado `orderId` para pasar como _value_ al _provider_ el ID de la nueva orden generada devuelto por _firebase_.
+>- Creo estado `isLoading` para pasar como _value_ al _provider_ y mostrar _spinner_ en **Cart** mientras se genera la nueva orden en _firestore_.
+>- Modifico el _helper_ `clear()` para que, además de eliminar el contenido del estado `cart`, elimine el estado de `orderId` si es que ya existe uno para poder generar una nueva compra con otro ID si es que ya se había realizado una compra anterior.
+>- Optimizo funcionalidad para calcular la cantidad total de ítems y monto total del carrito utilizando el métdo `reduce()`.
+
+- Cambios en **Cart**:
+>- Importo estados `orderId` e `isLoading` y _helper_ `getFinalOrder()` de **CartContext**.
+>- Creo botón "Realizar compra" que se muestra si no hay un `orderId` y se oculta al generarse dicho valor, lo cual sucede antes y después de realizar la compra respectivamente, y llama a `getFinalOrder()` al hacer click sobre él para generar una nueva orden en _firestore_.
+>- Creo botón "Volver a comprar" que se muestra cuando hay un `orderId` y se oculta mientras no haya uno, lo cual sucede después y antes de realizar la compra respectivamente, y llama a `clear()` de **CartContext** para eliminar el contenido del carrito y el `orderId` para poder realizar una nueva compra llenando nuevamente el carrito y generando un nuevo `orderId`.
+>- Muestro botón "Cancelar compra" condicionalmente sólo si no existe un `orderId`, lo cual sucede antes de realizar la compra, para cancelar una compra vaciando el carrito antes de que dicha compra se realice.
+>- Muestro mensaje de feedback condicionalmente si existe un `orderId`, lo cual sucede luego de realizar una compra, mostrando el `orderId` generado al usuario.
+>- Muestro _spinner_ al realizar la compra y hasta se genera la orden, es decir, mientras `isLoading` de **CartContext** vale `true`.
+
+- Cambios en **ItemListContainer**:
+>- Paso `categoryId` como prop a **ItemList**.
+>- Cambio márgenes del título principal de la prop `greeting`.
+
+- Cambios en **ItemList**:
+>- Recibo `categoryId` por props.
+>- Muestro la categoría como título si se navegó a una categoría con `categoryId` existente, o un mensaje alertando que la categoría no existe si se navegó a una categoría con `categoryId` inexistente, junto con una lista de ítems para seguir comprando de todas formas. Utilizo el valor de `categoryId` para detectar que se ha navegado a una categoría en este caso y evitar mostrar este mensaje de de alerta en la página principal donde no existe un con `categoryId` porque no se ha navegado a ninguna y se debe mostrar la _home page_ tal como estaba con el título de `greeting`.
+>- Modifico márgenes del título y del componente.
+
+- Cambios en **ItemDetailContainer**:
+>- Creo estado `foundItem` con valor `true` por defecto para pasar como prop a **ItemDetail**.
+>- Seteo `foundItem` a `false` en caso de que ningún ítem sea encontrado en la colección de productos en _firestore_ con el ID provisto, es decir, que se haya navegado a un ítem con ID inexistente.
+
+- Cambios en **ItemDetail**:
+>- Recibo prop `foundItem` para representar que un ítem fue encontrado con un ìtemId` correcto.
+>- Muestro contenido del componente condicionalmente sólo si se navega a un ítem con ID existente, lo cual sucede cuando `foundItem` es `true`, o un mensaje de feedback informando que el ítem no existe en caso contrario para evitar que se rompa la página.
+>- Agrego botón "Continuar comprando" para navegar a la _home page_ luego de agregar un ítem al carrito y poder seguir comprando.
+
+- Agrego un ancho máximo a **HomePage** y **CategoryPage**.
+- Agrego _wordings_ necesarios.
+
+## Versión 12
+- Instalo `react-with-firebase-auth` para incluir funcionalidad de autenticación mediante _firebsase_ a través de cuenta de Google.
+- Disponibilizo el servicio de auteticación de _firebase_ y el _provider_ de autenticación de Google mediante el "HOC" (_Higher Order Component_) `withFirebaseAuth()()` en **App.js**, lo que permite acceder a las props de autenticación en el componente y pasarlas componentes hijos como **NavBar.js** y **HomePage.js** en este caso. Se utiliza el atributo `render` del componente `Route` para poder pasar las props de autenticación a **HomePage.js**. Agrego clase modificadora del contenido principal de la app para mostrar en el centro de la pantalla el cuadro de login cuando el usuario no está autenticado.
+- Agrego componentem **Login.js** para mostrar un cuadro de login al ingresar a la app si el usuario no se encuentra autenticado.
+- Muestro foto de perfil y botón de logout en **NavBar.js** mediante las props de autenticación pasadas por **App.js**. Corrijo vista del **CartWidget.js** al agregar nuevo contenido en la _navbar_.
+- Muestro condicionalmente el contenido de la app o el cuadro de login en **HomePage.js** si el usuario no está autenticado, utilizando las props de autenticación pasadas por **App.js**.
+- Creo componente **LoadingSpinner.js** para modularizar lógica de rendering del _loading spinner_ y lo implemento en los componentes correspondientes que lo necesitan.
+- Implemento redirección al componente **NotFoundPage.js** cuando se introduce un _ítem ID_ inexistente al buscar el detalle de un ítem, o render del mismo componente cuando por alguna razón no se encuentra ningún ítem para mostrar en el catálogo o en una categoría. Esto mejora el render de un simple título que se estaba haciendo previamente.
+- Creo modal de confirmación que aparece al realizar una compra para forzar al usuario a navegar a la _home page_ luego de comprar sin realizar ninguna otra acción, para evitar realice cambios en el carrito todavía activo hasta que navegue a la página de inicio y se reinicie el estado del carrito.
+- Creo el componente **CheckoutForm.js** compuesto por otro componente **Input.js** para mostrar el formulario de _checkout_ antes de realizar la compra, para que el usuario ingrese su número de teléfono y dirección y pueda ser registrado en su órden. Mapeo inputs mediante un archivo _json_ de inputs.
+- Agrego formulario de _checkout_ a la vista del **Cart.js**, al cual agrego las props de login para mostrar nombre e email del usuario en el checkout.
+- Muevo el `<CartProvider>` de **index.js** a **App.js** para poder proveerle las props de login y agregar el email y nombre reales del usuario en la información de la órden. También accedo desde aquí a la información ingresada por el usuario en el form de _checkout_ para cargar todos los datos reales del mismo a la órden en _firebase_, eliminando así los datos mockeados que se habían utilizado en una primera instancia.
+- Actualizo **README.md**.
+- Mejoro estilos de botones y fuentes del documento.
+- Agrego _wordings_ necesarios.

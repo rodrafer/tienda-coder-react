@@ -1,25 +1,24 @@
 @import "./variables";
 
 .main-button {
-    background-color: $background-black;
+    background-color: $background-gray;
     color: $font-color-base;
-    border: 1px solid $border-withe;
     cursor: pointer;
-    font-size: $font-size-regular;
+    border: none;
+    border-radius: $spacing-5;
+    font-size: $font-size-base;
     font-weight: $font-weight-semi-bold;
+    box-shadow: $default-shadow;
+    padding: $spacing-5;
 
     &:hover {
-        border: 1px solid $border-blue;
+        box-shadow: $hover-shadow;
     }
 
     &--disabled {
-        border: 1px solid $border-disabled;
+        background-color: $background-disabled;
         color: $font-color-disabled;
-        cursor: unset;
-
-        &:hover {
-            border: 1px solid $border-disabled;
-        }
+        pointer-events: none;
     }
 }
 
@@ -37,7 +36,7 @@
 
     &--disabled {
         color: $font-color-disabled;
-        cursor: unset;
+        pointer-events: none;
 
         &:hover {
             color: $font-color-disabled;

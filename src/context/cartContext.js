@@ -5,7 +5,7 @@ import { dataBase } from '../firebase/firebase';
 
 export const CartContext = createContext([]);
 
-export const CartProvider = ({ children }) => {
+export const CartProvider = ({ children, user }) => {
     const [cart, setCart] = useState([]);
     const [totalQuantity, setTotalQuantity] = useState(0);
     const [totalCount, setTotalCount] = useState(0);
@@ -16,32 +16,34 @@ export const CartProvider = ({ children }) => {
 
     const addItem = (newItem, amount) => {
         !isInCart(newItem.id) && setCart([...cart, { item: newItem, quantity: amount }]);
-    }
+    };
 
     const removeItem = (itemId) => {
         isInCart(itemId) && setCart(cart.filter(order => order.item.id !== itemId));
-    }
+    };
 
     const updateQuantity = (itemId, newQuantity) => {
         cart.find(order => order.item.id === itemId).quantity = newQuantity;
         setCart([...cart]);
-    }
+    };
 
     const clear = () => {
         setCart([]);
         orderId && setOrderId();
     };
-        
-    const getFinalOrder = () => {
+
+    const getFinalOrder = (userData) => {
         const ordersCollection = dataBase.collection('ordenes');
-        
+
         setIsLoading(true);
 
         const newOrder = {
             buyer: {
-                name: 'Francisco Rodríguez',
-                phone: '351 267-39485',
-                email: 'frodriguez@gmail.com'
+                name: user.displayName,
+                phone: userData.phone,
+                email: user.email,
+                postalCode: userData.postalCode,
+                address: userData.address,
             },
             items: cart.map(({ item, quantity }) => {
                 return {
@@ -49,11 +51,11 @@ export const CartProvider = ({ children }) => {
                     title: item.title,
                     price: item.price,
                     quantity,
-                }
+                };
             }),
             date: firebase.firestore.Timestamp.fromDate(new Date()),
-            total: totalCount
-        }
+            total: totalCount,
+        };
 
         ordersCollection.add(newOrder).then(({ id }) => {
             setOrderId(id);
@@ -61,8 +63,8 @@ export const CartProvider = ({ children }) => {
             console.log('Error while uploading new order: ', error);
         }).finally(() => {
             setIsLoading(false);
-        })
-    }
+        });
+    };
 
     useEffect(() => {
         // Logging cart's value every time it changes (add/remove item) just to check if it behaves as expected
@@ -90,8 +92,8 @@ export const CartProvider = ({ children }) => {
                 addItem,
                 removeItem,
                 updateQuantity,
+                clear,
                 getFinalOrder,
-                clear
             }
         }>
             {children}

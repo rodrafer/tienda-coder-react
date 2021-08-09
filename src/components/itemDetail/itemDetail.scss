@@ -2,73 +2,67 @@
 @import "../../styles/components";
 
 .item-detail {
-    display: grid;
-    grid-template-columns: 70vw 20vw;
-    grid-template-rows: 50vh 30vh;
-    grid-template-areas:
-        "image specs"
-        "image count";
-    margin: $spacing-20 0;
-    color: $font-color-base;
-    background-color: $background-black;
-    border: 1px solid $border-blue;
-    cursor: pointer;
-    overflow: auto;
+  display: grid;
+  grid-template-columns: 70vw 20vw;
+  grid-template-rows: 50vh 30vh;
+  grid-template-areas:
+    "image specs"
+    "image count";
+  margin: $spacing-20 0;
+  color: $font-color-base;
+  background-color: $background-black;
+  border: 1px solid $border-blue;
+  cursor: pointer;
+  overflow: auto;
 
-    &__image {
-        grid-area: image;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 80vh;
-        width: 70vw;
-        border-right: 1px solid $border-blue;
+  &__image {
+    grid-area: image;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    width: 70vw;
+    border-right: 1px solid $border-blue;
+  }
+
+  &__specs {
+    grid-area: specs;
+
+    &-description {
+      text-align: start;
+      margin: $spacing-20 $spacing-10;
     }
 
-    &__specs {
-        grid-area: specs;
-
-        &-description {
-            text-align: start;
-            margin: $spacing-20 $spacing-10;
-        }
-
-        &-title {
-            text-align: start;
-            margin: $spacing-100 $spacing-10 0;
-            border-bottom: 1px solid $border-withe;
-            font-size: $font-size-huge;
-        }
-    
-        &-price {
-            text-align: start;
-            margin: $spacing-10 $spacing-10;
-            font-size: $font-size-big;
-        }
+    &-title {
+      text-align: start;
+      margin: $spacing-100 $spacing-10 0;
+      border-bottom: 1px solid $border-withe;
+      font-size: $font-size-huge;
     }
 
-    &__commands {
-        grid-area: count;
-        align-self: center;
-        justify-self: center;
-
-        .finish-buying-button,
-        .remove-item-button,
-        .continue-buying-button {
-            font-size: $font-size-big;
-            padding: 1px 6px;
-            display: inline-block;
-            margin-top: $spacing-20;
-        }
+    &-price {
+      text-align: start;
+      margin: $spacing-10 $spacing-10;
+      font-size: $font-size-big;
     }
+  }
 
-    &__loading {
-        min-height: calc(100vh - 70px);
-        display: flex;
-        align-items: center;
-    
-        &-spinner {
-            height: $spacing-75;
-        }
+  &__commands {
+    grid-area: count;
+    align-self: center;
+    justify-self: center;
+
+    .finish-buying-button,
+    .remove-item-button,
+    .continue-buying-button {
+      font-size: $font-size-big;
+      padding: 1px 6px;
+      display: inline-block;
+      margin-top: $spacing-20;
     }
+  }
+
+  &__loading {
+    min-height: calc(100vh - 70px);
+  }
 }

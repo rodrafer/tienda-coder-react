@@ -5,7 +5,14 @@ import { WORDINGS } from '../../wordings';
 import { CartContext } from '../../context/cartContext';
 
 export const ItemCount = (props) => {
-    const { stock, initial, onAdd, itemId, quantityInCart } = props;
+    const {
+        stock,
+        initial,
+        onAdd,
+        itemId,
+        quantityInCart,
+        componentIsDisabled,
+    } = props;
 
     const [count, setCount] = useState(quantityInCart || initial);
     const { updateQuantity } = useContext(CartContext);
@@ -14,8 +21,8 @@ export const ItemCount = (props) => {
     let subtractedCount;
     let stockDisclaimer;
     const minimumCount = 1;
-    const isSubtractDisabled = count === minimumCount || !stock;
-    const isAddDisabled = count === stock || !stock;
+    const isSubtractDisabled = count === minimumCount || !stock || componentIsDisabled;
+    const isAddDisabled = count === stock || !stock || componentIsDisabled;
 
     const renderStockDisclaimer = () => {
         if (!stock) {
@@ -25,8 +32,8 @@ export const ItemCount = (props) => {
         }
         return stockDisclaimer && (
             <p className="counter__stock-disclaimer">{stockDisclaimer}</p>
-        )
-    }
+        );
+    };
 
     const addItem = () => {
         addedCount = count + 1;
@@ -40,31 +47,36 @@ export const ItemCount = (props) => {
         quantityInCart && updateQuantity(itemId, subtractedCount);
     };
 
+    const counterCommandsClassNames = classNames(
+        'counter__commands',
+        { 'counter__commands--disabled': componentIsDisabled },
+    );
+
     const subtractButtonClassNames = classNames(
         'command-button',
         { 'command-button--disabled': isSubtractDisabled || !stock },
-    )
+    );
 
     const addButtonClassNames = classNames(
         'command-button',
         { 'command-button--disabled': isAddDisabled || !stock },
-    )
+    );
 
     const cartButtonClassNames = classNames(
         'counter__add-to-cart',
         'main-button',
         { 'main-button--disabled': !stock },
-    )
+    );
 
     const textAreaClassNames = classNames(
         'text-area',
         { 'text-area--disabled': !stock },
-    )
+    );
 
     return (
         <div className="counter">
             {renderStockDisclaimer()}
-            <div className="counter__commands">
+            <div className={counterCommandsClassNames}>
                 <button onClick={() => subtractItem()} disabled={isSubtractDisabled} className={subtractButtonClassNames}>-</button>
                 <span className={textAreaClassNames}>{stock ? count : 0}</span>
                 <button onClick={() => addItem()} disabled={isAddDisabled} className={addButtonClassNames}>+</button>
@@ -73,5 +85,5 @@ export const ItemCount = (props) => {
                 {WORDINGS.ADD_TO_CART}
             </button>}
         </div>
-    )
-}
+    );
+};
