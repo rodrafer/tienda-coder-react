@@ -16,23 +16,23 @@ export const CartProvider = ({ children, user }) => {
 
     const addItem = (newItem, amount) => {
         !isInCart(newItem.id) && setCart([...cart, { item: newItem, quantity: amount }]);
-    }
+    };
 
     const removeItem = (itemId) => {
         isInCart(itemId) && setCart(cart.filter(order => order.item.id !== itemId));
-    }
+    };
 
     const updateQuantity = (itemId, newQuantity) => {
         cart.find(order => order.item.id === itemId).quantity = newQuantity;
         setCart([...cart]);
-    }
+    };
 
     const clear = () => {
         setCart([]);
         orderId && setOrderId();
     };
 
-    const getFinalOrder = () => {
+    const getFinalOrder = (userData) => {
         const ordersCollection = dataBase.collection('ordenes');
 
         setIsLoading(true);
@@ -40,8 +40,10 @@ export const CartProvider = ({ children, user }) => {
         const newOrder = {
             buyer: {
                 name: user.displayName,
-                phone: '351 254-9383',
-                email: user.email
+                phone: userData.phone,
+                email: user.email,
+                postalCode: userData.postalCode,
+                address: userData.address,
             },
             items: cart.map(({ item, quantity }) => {
                 return {
@@ -49,11 +51,11 @@ export const CartProvider = ({ children, user }) => {
                     title: item.title,
                     price: item.price,
                     quantity,
-                }
+                };
             }),
             date: firebase.firestore.Timestamp.fromDate(new Date()),
-            total: totalCount
-        }
+            total: totalCount,
+        };
 
         ordersCollection.add(newOrder).then(({ id }) => {
             setOrderId(id);
@@ -61,8 +63,8 @@ export const CartProvider = ({ children, user }) => {
             console.log('Error while uploading new order: ', error);
         }).finally(() => {
             setIsLoading(false);
-        })
-    }
+        });
+    };
 
     useEffect(() => {
         // Logging cart's value every time it changes (add/remove item) just to check if it behaves as expected
@@ -90,8 +92,8 @@ export const CartProvider = ({ children, user }) => {
                 addItem,
                 removeItem,
                 updateQuantity,
+                clear,
                 getFinalOrder,
-                clear
             }
         }>
             {children}
