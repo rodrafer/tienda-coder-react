@@ -1,6 +1,8 @@
 // Colors
 $background-black: #1d1d1d;
 $background-blue: #303b50;
+$background-gray: rgba(74, 74, 87, 0.5);
+$background-disabled: rgb(157, 156, 156);
 $link-blue: #61dafb;
 $border-blue: #0a99c1;
 $border-withe: #ffffff;
@@ -8,7 +10,11 @@ $border-disabled: #5c5c5c;
 $font-color-base: #ffffff;
 $font-color-blue: #0a99c1;
 $font-color-red: #c1160a;
-$font-color-disabled: #5c5c5c;
+$font-color-disabled: #4b4b4b;
+
+// Shadows
+$default-shadow: 0px 0px 10px black;
+$hover-shadow: 0px 0px 10px 3px black;
 
 // Font Sizes
 $font-size-small: 8px;
