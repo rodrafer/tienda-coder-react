@@ -228,6 +228,6 @@ Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 - Muestro foto de perfil y botón de logout en **NavBar.js** mediante las props de autenticación pasadas por **App.js**.
 - Muestro condicionalmente el contenido de la app o el cuadro de login en **HomePage.js** si el usuario no está autenticado, utilizando las props de autenticación pasadas por **App.js**.
 - Creo componente **LoadingSpinner.js** para modularizar lógica de rendering del _loading spinner_ y lo implemento en los componentes correspondientes que lo necesitan.
-- Implemento redirección a **NotFoundPage.s** cuando se introduce un _ítem ID_ inexistente al buscar el detalle de un ítem o cuando por alguna razón no se encuentra ningún ítem para mostrar en el catálogo o en una categoría. Esto mejora el render de un simple título que se estaba haciendo previamente.
+- Implemento redirección al componente **NotFoundPage.js** cuando se introduce un _ítem ID_ inexistente al buscar el detalle de un ítem, o render del mismo componente cuando por alguna razón no se encuentra ningún ítem para mostrar en el catálogo o en una categoría. Esto mejora el render de un simple título que se estaba haciendo previamente.
 - Mejoro estilos de botones y fuentes del documento.
 - Agrego _wordings_ necesarios.
