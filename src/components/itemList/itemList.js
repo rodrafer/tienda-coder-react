@@ -1,8 +1,8 @@
 import './itemList.scss';
 import { Fragment } from 'react';
-import { Redirect } from 'react-router-dom';
 import { Item } from '../item/item';
 import { LoadingSpinner } from '../loadingSpinner/loadingSpinner';
+import { NotFoundPage } from '../../pages/notFoundPage/notFoundPage';
 import { WORDINGS } from '../../wordings';
 
 export const ItemList = (props) => {
@@ -22,7 +22,7 @@ export const ItemList = (props) => {
             : categoryId && <h1 className="item-list__title">{WORDINGS.CATEGORY_NOT_FOUND}</h1>}
           {items.map(item => <Item item={item} key={item.id} />)}
         </Fragment>
-        : <Redirect to="/catalog-not-found" />
+        : <NotFoundPage/>
     } else {
       return <LoadingSpinner extraClassName="item-list__loading" />
     }
