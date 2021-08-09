@@ -41,7 +41,9 @@ function App(loginProps) {
               )} />
               <Route path="/category/:categoryId" component={CategoryPage} />
               <Route path="/item/:itemId" component={ItemDetailPage} />
-              <Route path="/cart" component={CartPage} />
+              <Route path="/cart" render={() => (
+                <CartPage {...loginProps} />
+              )} />
               <Route path="*" component={NotFoundPage} />
             </Switch>
           </main>
