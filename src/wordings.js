@@ -26,17 +26,20 @@ export const WORDINGS = {
     BUY: 'Realizar compra',
     CONTINUE_BUYING: 'Continuar comprando',
     BUY_AGAIN: 'Volver a comprar',
+    LOGIN_WITH_GOOGLE: 'Ingresar con Google',
 
     // DISCLAIMERS
     NO_STOCK: 'Sin stock momentáneamente',
     MAXIMUM_STOCK_REACHED: 'Stock máximo alcanzado',
     TURN_TO_HOME_PAGE: 'Volvé a la página principal para agregar increíbles productos',
+    LOGIN_FIRST: 'Por favor, ingresá con tu cuenta antes de continuar al sitio',
 
     // FEEDBACKS
     ONE_ITEM_ADDED: 'fue añadido al carrito exitosamente',
     SEVERAL_ITEMS_ADDED: 'fueron añadidos al carrito exitosamente',
     CONTENT_NOT_FOUND: 'Ups! Parece que no hay nada por aquí',
     THANKS_FOR_BUYING: '!Gracias por tu cpmpra! El ID de la operación es:',
+    CATEGORY_NOT_FOUND:'Aún no contamos con esta categoría, aquí tienes algunos ítems para seguir comprando:',
 
     // INFORMATION
     TOTAL_TO_PAY: 'Total a pagar:'
