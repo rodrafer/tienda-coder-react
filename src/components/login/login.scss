@@ -1,0 +1,28 @@
+@import "../../styles/variables";
+@import "../../styles/components";
+
+.login {
+    height: $spacing-250;
+    width: $spacing-250;
+    color: $font-color-base;
+    background-color: $background-black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: $default-shadow;
+
+    &__disclaimer {
+        margin: 0;
+    }
+
+    &__button {
+        width: fit-content;
+    }
+
+    &__logo {
+        margin: 0 $spacing-15;
+        box-shadow: $default-shadow;
+    }
+}
