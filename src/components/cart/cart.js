@@ -1,4 +1,5 @@
 import './cart.scss';
+import classNames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 import { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -18,6 +19,12 @@ export const Cart = () => {
     clear
   } = useContext(CartContext);
 
+  const removeButtonClassNames = classNames(
+    'cart-list__item-commands-remove',
+    'command-button',
+    { 'command-button--disabled': !!orderId },
+  );
+
   const renderItemsInCart = () => {
     return cart.map(order => {
       const { item, quantity } = order;
@@ -26,8 +33,9 @@ export const Cart = () => {
       const itemCountProps = {
         stock: item.stock,
         itemId: item.id,
-        quantityInCart: quantity
-      }
+        quantityInCart: quantity,
+        componentIsDisabled: !!orderId,
+      };
 
       return (
         <li key={keyId} className="cart-list__item">
@@ -40,12 +48,17 @@ export const Cart = () => {
           <p className="cart-list__item-price">${item.price}</p>
           <div className="cart-list__item-commands">
             <ItemCount {...itemCountProps} />
-            <button className="cart-list__item-commands-remove command-button" onClick={() => removeItem(item.id)}>X</button>
+            <button
+              className={removeButtonClassNames}
+              disabled={!!orderId}
+              onClick={() => removeItem(item.id)}>
+              X
+            </button>
           </div>
         </li>
-      )
-    })
-  }
+      );
+    });
+  };
 
   const renderEmptyCart = () => {
     return (
@@ -54,8 +67,27 @@ export const Cart = () => {
         <p>{WORDINGS.TURN_TO_HOME_PAGE}</p>
         <Link to="/" className="cart-empty__back-to-home main-button">{WORDINGS.BACK_TO_HOME}</Link>
       </div>
-    )
-  }
+    );
+  };
+
+  const renderConfirmationModal = () => {
+    return (
+      <div className="cart-modal">
+        {isLoading
+          ? <LoadingSpinner extraClassName="cart-modal__loading" />
+          : <div className="cart-modal__content">
+            <h3 className="cart-modal__content-title">{WORDINGS.THANKS_FOR_BUYING}</h3>
+            <div className="cart-modal__content-info">
+              <p>{WORDINGS.YOUR_ORDER_ID_IS}</p>
+              <p className="order-id">{orderId}</p>
+            </div>
+            <Link to="/" className="cart-modal__content-back main-button" onClick={() => clear()}>
+              {WORDINGS.BACK_TO_HOME}
+            </Link>
+          </div>}
+      </div>
+    );
+  };
 
   return (
     <div className="cart">
@@ -65,13 +97,10 @@ export const Cart = () => {
           <ul className="cart-list">
             {renderItemsInCart()}
           </ul>
-          <div className="cart-summary">
+          <footer className="cart-summary">
             <div className="cart-summary__actions">
-              {orderId
-                ? <Link to="/" className="cart-summary__buy-again main-button" onClick={() => clear()}>
-                  {WORDINGS.BUY_AGAIN}
-                </Link>
-                : <Fragment>
+              {!orderId &&
+                <Fragment>
                   <button className="cart-summary__dismiss-cart main-button" onClick={() => clear()}>
                     {WORDINGS.DISMISS_CART}
                   </button>
@@ -80,14 +109,12 @@ export const Cart = () => {
                   </button>
                 </Fragment>}
             </div>
-            {isLoading
-              ? <LoadingSpinner extraClassName="cart-summary__loading" />
-              : orderId && <p>{WORDINGS.THANKS_FOR_BUYING} <span>{orderId}</span></p>}
             <div className="cart-summary__info">
               <p className="cart-summary__message">{WORDINGS.TOTAL_TO_PAY}</p>
               <p className="cart-summary__total">{totalCount}</p>
             </div>
-          </div>
+          </footer>
+          {orderId && renderConfirmationModal()}
         </Fragment>
         : renderEmptyCart()}
     </div>
