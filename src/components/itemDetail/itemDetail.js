@@ -1,8 +1,8 @@
 import './itemDetail.scss';
 import { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import spinner from '../../assets/double-ring-loader.gif';
 import { ItemCount } from '../itemCount/itemCount';
+import { LoadingSpinner } from '../loadingSpinner/loadingSpinner';
 import { CartContext } from '../../context/cartContext';
 import { WORDINGS } from '../../wordings';
 
@@ -38,6 +38,7 @@ export const ItemDetail = (props) => {
             : <ItemCount {...itemCountPops} />
     }
 
+    // Mejorar este render por favor
     return hasLoaded
         ? foundItem
             ? <div className="item-detail">
@@ -56,7 +57,5 @@ export const ItemDetail = (props) => {
             : <div className="item-list__not-found">
                 <h1>{WORDINGS.CONTENT_NOT_FOUND}</h1>
             </div>
-        : <div className="item-detail__loading">
-            <img className="item-detail__loading-spinner" alt="spinner" src={spinner} />
-        </div>
+        : <LoadingSpinner extraClassName="item-detail__loading" />
 }

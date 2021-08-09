@@ -2,21 +2,20 @@
 @import "../../styles/components";
 
 .item-list {
-    margin-bottom: $spacing-20;
-    color: $font-color-base;
+  margin-bottom: $spacing-20;
+  color: $font-color-base;
 
-    &__title {
-        margin: $spacing-50 0;
-    }
+  &__title {
+    margin: $spacing-50 0;
+  }
 
-    &__loading,
-    &__not-found {
-        min-height: calc(100vh - 148px);
-        display: flex;
-        align-items: center;
+  &__loading,
+  &__not-found {
+    min-height: calc(100vh - 148px);
+  }
 
-        &-spinner {
-            height: $spacing-75;
-        }
-    }
+  &__not-found {
+    display: flex;
+    align-items: center;
+  }
 }
