@@ -48,8 +48,8 @@ export const NavBar = (loginProps) => {
         </nav>
       </div>
       <div className="wrapper-right">
-        {user && renderProfile()}
         {shouldRenderCartWidget && <CartWidget />}
+        {user && renderProfile()}
       </div>
     </Fragment>
   )
