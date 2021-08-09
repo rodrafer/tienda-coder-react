@@ -1,0 +1,21 @@
+@import "../../styles/variables";
+
+.input {
+    &-label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: $font-size-base;
+        margin-top: $spacing-10;
+        color: $font-color-blue;
+    }
+
+    &-content {
+        margin-top: $spacing-5;
+        height: $spacing-25;
+        width: $spacing-250;
+        background-color: $modal-background;
+        border: none;
+        border-radius: 5px;
+    }
+}

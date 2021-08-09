@@ -1,0 +1,20 @@
+[
+    {
+        "name": "phone",
+        "label": "Teléfono",
+        "value": "",
+        "required": false
+    },
+    {
+        "name": "postal-code",
+        "label": "Código Postal",
+        "value": "",
+        "required": true
+    },
+    {
+        "name": "address",
+        "label": "Dirección",
+        "value": "",
+        "required": true
+    }
+]

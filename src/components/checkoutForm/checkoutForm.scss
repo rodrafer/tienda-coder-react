@@ -1,0 +1,14 @@
+@import "../../styles/variables";
+
+.checkout-form {
+    height: $spacing-400;
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    &__submit {
+        margin: $spacing-25;
+    }
+}
