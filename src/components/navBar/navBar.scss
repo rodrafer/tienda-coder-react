@@ -35,3 +35,19 @@
         }
     }
 }
+
+.wrapper-right {
+    .profile {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        width: $spacing-150;
+
+        &__picture {
+            height: $spacing-50;
+            box-shadow: $default-shadow;
+            border-radius: 50%;
+        }
+    }
+}

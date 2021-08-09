@@ -10,36 +10,47 @@ import { CartContext } from '../../context/cartContext';
 
 const replaceSpecialCharacters = require('replace-special-characters');
 
-export const NavBar = () => {
-    const { cart } = useContext(CartContext);
-    const shouldRenderCartWidget = !!cart.length;
+export const NavBar = (loginProps) => {
+  const { user, signOut } = loginProps;
+  const { cart } = useContext(CartContext);
+  const shouldRenderCartWidget = !!cart.length;
 
-    const renderCategories = () => {
-        return WORDINGS.CATEGORIES.map(category => {
-            const keyId = uuidv4().slice(0, 4);
-            return (
-                <li key={keyId} className="category">
-                    <NavLink to={`/category/${snakeCase(replaceSpecialCharacters(category))}`} activeClassName="category__link">{category}</NavLink>
-                </li>
-            )
-        })
-    }
+  const renderCategories = () => {
+    return WORDINGS.CATEGORIES.map(category => {
+      const keyId = uuidv4().slice(0, 4);
+      return (
+        <li key={keyId} className="category">
+          <NavLink to={`/category/${snakeCase(replaceSpecialCharacters(category))}`} activeClassName="category__link">{category}</NavLink>
+        </li>
+      )
+    })
+  };
 
+  const renderProfile = () => {
     return (
-        <Fragment>
-            <div className="wrapper-left">
-                <Link to="/">
-                    <img src={logo} alt="logo" className="logo"></img>
-                </Link>
-                <nav className="menu">
-                    <ul className="menu__list">
-                        {renderCategories()}
-                    </ul>
-                </nav>
-            </div>
-            <div className="wrapper-right">
-                {shouldRenderCartWidget && <CartWidget />}
-            </div>
-        </Fragment>
+      <div className="profile">
+        <img src={user.photoURL} alt="profile" className="profile__picture"></img>
+        <button onClick={signOut} className="profile__sign-out-button main-button">Salir</button>
+      </div>
     )
+  }
+
+  return (
+    <Fragment>
+      <div className="wrapper-left">
+        <Link to="/">
+          <img src={logo} alt="logo" className="logo"></img>
+        </Link>
+        <nav className="menu">
+          <ul className="menu__list">
+            {renderCategories()}
+          </ul>
+        </nav>
+      </div>
+      <div className="wrapper-right">
+        {user && renderProfile()}
+        {shouldRenderCartWidget && <CartWidget />}
+      </div>
+    </Fragment>
+  )
 }
