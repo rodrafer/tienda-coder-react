@@ -5,7 +5,7 @@ import { dataBase } from '../firebase/firebase';
 
 export const CartContext = createContext([]);
 
-export const CartProvider = ({ children }) => {
+export const CartProvider = ({ children, user }) => {
     const [cart, setCart] = useState([]);
     const [totalQuantity, setTotalQuantity] = useState(0);
     const [totalCount, setTotalCount] = useState(0);
@@ -31,17 +31,17 @@ export const CartProvider = ({ children }) => {
         setCart([]);
         orderId && setOrderId();
     };
-        
+
     const getFinalOrder = () => {
         const ordersCollection = dataBase.collection('ordenes');
-        
+
         setIsLoading(true);
 
         const newOrder = {
             buyer: {
-                name: 'Francisco Rodríguez',
-                phone: '351 267-39485',
-                email: 'frodriguez@gmail.com'
+                name: user.displayName,
+                phone: '351 254-9383',
+                email: user.email
             },
             items: cart.map(({ item, quantity }) => {
                 return {
