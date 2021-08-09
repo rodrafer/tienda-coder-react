@@ -5,15 +5,17 @@ import { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ItemCount } from '../itemCount/itemCount';
 import { LoadingSpinner } from '../loadingSpinner/loadingSpinner';
+import { CheckoutForm } from '../checkoutForm/checkoutForm';
 import { CartContext } from '../../context/cartContext';
 import { WORDINGS } from '../../wordings';
 
-export const Cart = () => {
+export const Cart = (loginProps) => {
+  const { user } = loginProps;
+
   const {
     cart,
     totalCount,
     removeItem,
-    getFinalOrder,
     orderId,
     isLoading,
     clear
@@ -94,20 +96,26 @@ export const Cart = () => {
       <h1 className="cart-title">{WORDINGS.CART_SUMMARY}</h1>
       {cart.length
         ? <Fragment>
-          <ul className="cart-list">
-            {renderItemsInCart()}
-          </ul>
+          <div className="cart-checkout">
+            <ul className="cart-list">
+              {renderItemsInCart()}
+            </ul>
+            <aside className="cart-user-info">
+              <h3>¡Ya casi terminamos!</h3>
+              <p>Estás compando como</p>
+              <p className="cart-user-info__data">{user.displayName}</p>
+              <p>a través de la cuenta</p>
+              <p className="cart-user-info__data">{user.email}</p>
+              <p>Completá los siguientes datos faltantes para finalizar tu compra:</p>
+              <CheckoutForm />
+            </aside>
+          </div>
           <footer className="cart-summary">
             <div className="cart-summary__actions">
               {!orderId &&
-                <Fragment>
-                  <button className="cart-summary__dismiss-cart main-button" onClick={() => clear()}>
-                    {WORDINGS.DISMISS_CART}
-                  </button>
-                  <button className="cart-summary__checkout main-button" onClick={() => console.log(getFinalOrder())}>
-                    {WORDINGS.BUY}
-                  </button>
-                </Fragment>}
+                <button className="cart-summary__dismiss-cart main-button" onClick={() => clear()}>
+                  {WORDINGS.DISMISS_CART}
+                </button>}
             </div>
             <div className="cart-summary__info">
               <p className="cart-summary__message">{WORDINGS.TOTAL_TO_PAY}</p>
