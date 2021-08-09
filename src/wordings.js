@@ -19,7 +19,7 @@ export const WORDINGS = {
 
     // BUTTONS
     ADD_TO_CART: 'Agregar al carrito',
-    FINISH_BUYING: 'Terminar mi compra',
+    GO_TO_CART: 'Ir al carrito',
     REMOVE_FROM_CART: 'Eliminar del carrito',
     BACK_TO_HOME: 'Volver al inicio',
     DISMISS_CART: 'Cancelar compra',

@@ -26,7 +26,7 @@ export const ItemDetail = (props) => {
     return isInCart(item.id)
       ? <Fragment>
         <Link to="/cart" className="finish-buying-button main-button">
-          {WORDINGS.FINISH_BUYING}
+          {WORDINGS.GO_TO_CART}
         </Link>
         <Link to="/" className="continue-buying-button main-button">
           {WORDINGS.CONTINUE_BUYING}
