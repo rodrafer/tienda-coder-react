@@ -44,7 +44,11 @@ Estos son los paquetes de npm que se utilizaron para la construcción de la app:
 ## Licencia
 Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 
-## Demo
+## Demo Login
+![Reactive Games Login Demo](https://user-images.githubusercontent.com/81263046/128801738-0f39fece-71e9-401e-abd6-2584c5243a7f.gif)
+
+
+## Demo Compra
 ![Reactive Games Demo](https://user-images.githubusercontent.com/81263046/128801133-6ff091e8-e283-48e2-929c-5d6829279845.gif)
 
 ## CHANGELOG
