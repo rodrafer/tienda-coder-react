@@ -44,6 +44,9 @@ Estos son los paquetes de npm que se utilizaron para la construcción de la app:
 ## Licencia
 Este proyecto posee Licencia [MIT](https://opensource.org/licenses/MIT)
 
+## Demo
+![image](https://user-images.githubusercontent.com/81263046/128801040-13e33790-4e7c-4044-9ac0-fc5f00b429a3.png)
+
 ## CHANGELOG
 
 ### Versión 0
